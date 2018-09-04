@@ -1,0 +1,80 @@
+G:\Users\Clemens\Documents\Visual Studio 2012\Projects\Bilder_suchen\MainProgram\bin\Debug\MainProgram.dll
+G:\Users\Clemens\Documents\Visual Studio 2012\Projects\Bilder_suchen\MainProgram\bin\Debug\MainProgram.pdb
+G:\Users\Clemens\Documents\Visual Studio 2012\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.csprojResolveAssemblyReference.cache
+G:\Users\Clemens\Documents\Visual Studio 2012\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.dll
+G:\Users\Clemens\Documents\Visual Studio 2012\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.pdb
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\bin\Debug\MainProgram.dll
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\bin\Debug\MainProgram.pdb
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.csprojResolveAssemblyReference.cache
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.dll
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.pdb
+C:\Users\Clemens\Desktop\Projects\Bilder_suchen\MainProgram\bin\Debug\MainProgram.dll
+C:\Users\Clemens\Desktop\Projects\Bilder_suchen\MainProgram\bin\Debug\MainProgram.pdb
+C:\Users\Clemens\Desktop\Projects\Bilder_suchen\MainProgram\bin\Debug\Parallelize.dll
+C:\Users\Clemens\Desktop\Projects\Bilder_suchen\MainProgram\bin\Debug\Parallelize.pdb
+C:\Users\Clemens\Desktop\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.csprojResolveAssemblyReference.cache
+C:\Users\Clemens\Desktop\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.dll
+C:\Users\Clemens\Desktop\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.pdb
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\bin\Debug\MainProgram.dll
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\bin\Debug\MainProgram.pdb
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\bin\Debug\Parallelize.dll
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\bin\Debug\Parallelize.pdb
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.csprojResolveAssemblyReference.cache
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.dll
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.pdb
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\bin\Debug\OrdnerDatei.dll
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\bin\Debug\OrdnerDatei.pdb
+C:\Users\Clemens\Desktop\Bilder_suchen\MainProgram\bin\Debug\MainProgram.dll
+C:\Users\Clemens\Desktop\Bilder_suchen\MainProgram\bin\Debug\MainProgram.pdb
+C:\Users\Clemens\Desktop\Bilder_suchen\MainProgram\bin\Debug\OrdnerDatei.pdb
+C:\Users\Clemens\Desktop\Bilder_suchen\MainProgram\bin\Debug\Parallelize.pdb
+C:\Users\Clemens\Desktop\Bilder_suchen\MainProgram\obj\Debug\MainProgram.csprojResolveAssemblyReference.cache
+C:\Users\Clemens\Desktop\Bilder_suchen\MainProgram\obj\Debug\MainProgram.dll
+C:\Users\Clemens\Desktop\Bilder_suchen\MainProgram\obj\Debug\MainProgram.pdb
+G:\Users\Clemens\Desktop\Bilder_suchen\MainProgram\bin\Debug\MainProgram.dll
+G:\Users\Clemens\Desktop\Bilder_suchen\MainProgram\bin\Debug\MainProgram.pdb
+G:\Users\Clemens\Desktop\Bilder_suchen\MainProgram\bin\Debug\OrdnerDatei.pdb
+G:\Users\Clemens\Desktop\Bilder_suchen\MainProgram\bin\Debug\Parallelize.pdb
+G:\Users\Clemens\Desktop\Bilder_suchen\MainProgram\obj\Debug\MainProgram.csprojResolveAssemblyReference.cache
+G:\Users\Clemens\Desktop\Bilder_suchen\MainProgram\obj\Debug\MainProgram.dll
+G:\Users\Clemens\Desktop\Bilder_suchen\MainProgram\obj\Debug\MainProgram.pdb
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\MainProgram\bin\Debug\MainProgram.dll
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\MainProgram\bin\Debug\MainProgram.pdb
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\MainProgram\obj\Debug\MainProgram.csprojResolveAssemblyReference.cache
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\MainProgram\obj\Debug\MainProgram.dll
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\MainProgram\obj\Debug\MainProgram.pdb
+C:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\bin\Debug\MainProgram.dll
+C:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\bin\Debug\MainProgram.pdb
+C:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\bin\Debug\FolderFileLib.dll
+C:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.csprojResolveAssemblyReference.cache
+C:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.dll
+C:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.pdb
+C:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\AskCopyMove.g.cs
+C:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram_MarkupCompile.cache
+C:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram_MarkupCompile.lref
+C:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\AskCopyMove.baml
+C:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.g.resources
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\bin\Debug\FolderFileLib.dll
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\AskCopyMove.g.cs
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram_MarkupCompile.cache
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram_MarkupCompile.lref
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\AskCopyMove.baml
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.g.resources
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\MainProgram\bin\Debug\FolderFileLib.dll
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\MainProgram\obj\Debug\AskCopyMove.g.cs
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\MainProgram\obj\Debug\MainProgram_MarkupCompile.cache
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\MainProgram\obj\Debug\MainProgram_MarkupCompile.lref
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\MainProgram\obj\Debug\AskCopyMove.baml
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\MainProgram\obj\Debug\MainProgram.g.resources
+D:\Projects\Bilder_suchen\MainProgram\bin\Debug\MainProgram.dll
+D:\Projects\Bilder_suchen\MainProgram\bin\Debug\MainProgram.pdb
+D:\Projects\Bilder_suchen\MainProgram\bin\Debug\FolderFileLib.dll
+D:\Projects\Bilder_suchen\MainProgram\obj\Debug\AskCopyMove.g.cs
+D:\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram_MarkupCompile.cache
+D:\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram_MarkupCompile.lref
+D:\Projects\Bilder_suchen\MainProgram\obj\Debug\AskCopyMove.baml
+D:\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.g.resources
+D:\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.dll
+D:\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.pdb
+D:\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.csproj.CoreCompileInputs.cache
+D:\Projects\Bilder_suchen\MainProgram\obj\Debug\MainProgram.csprojResolveAssemblyReference.cache

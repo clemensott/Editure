@@ -1,0 +1,133 @@
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\bin\Release\Bilder_suchen.exe.config
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\bin\Release\Bilder_suchen.exe
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\bin\Release\Bilder_suchen.pdb
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\bin\Release\MainProgram.dll
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\bin\Release\Parallelize.dll
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\bin\Release\MainProgram.pdb
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\bin\Release\Parallelize.pdb
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.csprojResolveAssemblyReference.cache
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\MainWindow.baml
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\MainWindow.g.cs
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\App.g.cs
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen_MarkupCompile.cache
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.g.resources
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.Properties.Resources.resources
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.csproj.GenerateResource.Cache
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.exe
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.pdb
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\bin\Release\OrdnerDatei.dll
+E:\Clemens\Dokumente\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\bin\Release\OrdnerDatei.pdb
+C:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\bin\Release\Bilder_suchen.exe.config
+C:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\bin\Release\Bilder_suchen.exe
+C:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\bin\Release\Bilder_suchen.pdb
+C:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\bin\Release\MainProgram.dll
+C:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\bin\Release\Parallelize.dll
+C:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\bin\Release\MainProgram.pdb
+C:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\bin\Release\OrdnerDatei.pdb
+C:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\bin\Release\Parallelize.pdb
+C:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.csprojResolveAssemblyReference.cache
+C:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\MainWindow.baml
+C:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\MainWindow.g.cs
+C:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\App.g.cs
+C:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen_MarkupCompile.cache
+C:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.g.resources
+C:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.Properties.Resources.resources
+C:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.csproj.GenerateResource.Cache
+C:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.exe
+C:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.pdb
+G:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\bin\Release\Bilder_suchen.exe.config
+G:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.exe
+G:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.pdb
+G:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\bin\Release\Bilder_suchen.exe
+G:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\bin\Release\Bilder_suchen.pdb
+G:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\bin\Release\MainProgram.dll
+G:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\bin\Release\Parallelize.dll
+G:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\bin\Release\MainProgram.pdb
+G:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\bin\Release\OrdnerDatei.pdb
+G:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\bin\Release\Parallelize.pdb
+G:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.csprojResolveAssemblyReference.cache
+G:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\MainWindow.baml
+G:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\MainWindow.g.cs
+G:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\App.g.cs
+G:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen_MarkupCompile.cache
+G:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.g.resources
+G:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.Properties.Resources.resources
+G:\Users\Clemens\Desktop\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.csproj.GenerateResource.Cache
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\bin\Release\Bilder_suchen.exe.config
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.exe
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.pdb
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\bin\Release\Bilder_suchen.exe
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\bin\Release\Bilder_suchen.pdb
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\bin\Release\MainProgram.dll
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\bin\Release\Parallelize.dll
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\bin\Release\MainProgram.pdb
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\bin\Release\OrdnerDatei.pdb
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\bin\Release\Parallelize.pdb
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.csprojResolveAssemblyReference.cache
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\obj\Release\MainWindow.baml
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\obj\Release\MainWindow.g.cs
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\obj\Release\App.g.cs
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen_MarkupCompile.cache
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.g.resources
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.Properties.Resources.resources
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.csproj.GenerateResource.Cache
+G:\Users\Clemens\Desktop\Tmp\Bilder_suchen\Bilder_suchen\bin\Release\OrdnerDatei.dll
+D:\Projects\Bilder_suchen\Bilder_suchen\bin\Release\Bilder_suchen.exe.config
+D:\Projects\Bilder_suchen\Bilder_suchen\bin\Release\Bilder_suchen.exe
+D:\Projects\Bilder_suchen\Bilder_suchen\bin\Release\Bilder_suchen.pdb
+D:\Projects\Bilder_suchen\Bilder_suchen\bin\Release\FolderFileLib.dll
+D:\Projects\Bilder_suchen\Bilder_suchen\bin\Release\MainProgram.dll
+D:\Projects\Bilder_suchen\Bilder_suchen\bin\Release\MainProgram.pdb
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.csprojResolveAssemblyReference.cache
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\PicturesChooser.g.cs
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\FilesSearcher.g.cs
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\PicturesEditor.g.cs
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\FilesMixer.g.cs
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\MainWindow.g.cs
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\PictureCopyer.g.cs
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\App.g.cs
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\GeneratedInternalTypeHelper.g.cs
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen_MarkupCompile.cache
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen_MarkupCompile.lref
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\PicturesChooser.baml
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\FilesSearcher.baml
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\PicturesEditor.baml
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\FilesMixer.baml
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\MainWindow.baml
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\PictureCopyer.baml
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.g.resources
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.Properties.Resources.resources
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.csproj.GenerateResource.Cache
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.csproj.CoreCompileInputs.cache
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.exe
+D:\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.pdb
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\bin\Release\Bilder_suchen.exe.config
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.exe
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.pdb
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\bin\Release\Bilder_suchen.exe
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\bin\Release\Bilder_suchen.pdb
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\bin\Release\FolderFileLib.dll
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\bin\Release\MainProgram.dll
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\bin\Release\MainProgram.pdb
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.csprojResolveAssemblyReference.cache
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\PicturesChooser.g.cs
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\FilesSearcher.g.cs
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\PicturesEditor.g.cs
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\FilesMixer.g.cs
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\MainWindow.g.cs
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\PictureCopyer.g.cs
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\App.g.cs
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\GeneratedInternalTypeHelper.g.cs
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen_MarkupCompile.cache
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen_MarkupCompile.lref
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\PicturesChooser.baml
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\FilesSearcher.baml
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\PicturesEditor.baml
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\FilesMixer.baml
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\MainWindow.baml
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\PictureCopyer.baml
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.g.resources
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.Properties.Resources.resources
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\Bilder_suchen.csproj.GenerateResource.Cache
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\DestFolderControl.g.cs
+G:\Users\Clemens\Documents\Visual Studio 2015\Projects\Bilder_suchen\Bilder_suchen\obj\Release\DestFolderControl.baml
