@@ -63,7 +63,7 @@ namespace MainProgram
 
         public CurrentItemList<FileInfo> Pictures
         {
-            get { return pictures ?? new CurrentItemList<FileInfo>(Needed.DefaultFileInfo); }
+            get { return pictures ?? new CurrentItemList<FileInfo>(Utils.DefaultFileInfo); }
             set
             {
                 if (value == pictures) return;

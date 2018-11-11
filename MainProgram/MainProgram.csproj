@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FolderFileLib">
-      <HintPath>..\FolderFileLib.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -85,7 +82,7 @@
     <Compile Include="Editing\ReferencePosition\ReferencePositionTopLeft.cs" />
     <Compile Include="IntSize.cs" />
     <Compile Include="IntPoint.cs" />
-    <Compile Include="Needed.cs" />
+    <Compile Include="Utils.cs" />
     <Compile Include="PreloadImage.cs" />
     <Compile Include="Save\ChooseInfo.cs" />
     <Compile Include="Save\CopyInfo.cs" />
@@ -113,6 +110,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\OrdnerDatei\FolderFileLib.csproj">
+      <Project>{0de5f7b2-633a-4acf-b6ad-df37bd9e68d9}</Project>
+      <Name>FolderFileLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

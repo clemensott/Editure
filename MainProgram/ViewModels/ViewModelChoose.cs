@@ -1,4 +1,5 @@
 ﻿using FolderFile;
+using System.IO;
 
 namespace MainProgram
 {
@@ -97,22 +98,18 @@ namespace MainProgram
             min = new IntSize(0, 0);
             max = new IntSize(1000, 1000);
 
-            Src = new Folder("", SubfolderType.This);
-
             Have = new DestinationFolder()
             {
                 IsDo = false,
                 IsAllDelete = false,
-                IsCopy = true,
-                Dest = new Folder("", SubfolderType.This)
+                IsCopy = true
             };
 
             Havent = new DestinationFolder()
             {
                 IsDo = false,
                 IsAllDelete = false,
-                IsCopy = true,
-                Dest = new Folder("", SubfolderType.This)
+                IsCopy = true
             };
 
             Chooser = new Chooser(this);

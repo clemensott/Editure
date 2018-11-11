@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 
 namespace MainProgram
 {
@@ -14,27 +12,16 @@ namespace MainProgram
 
         protected override FileInfo[] Initialize()
         {
-            Needed.TryCatchWithMsgBox(viewModel.Src.RefreshFolderAndFiles, "Refresh Search Src failed");
-            Needed.TryCatchWithMsgBox(viewModel.Ref.RefreshFolderAndFiles, "Refresh Search Reference failed");
+            FileInfo[] srcFiles = Utils.SetSubTypeAndRefresh(viewModel.Src, "Refresh Search Src failed");
+            FileInfo[] refFiles = Utils.SetSubTypeAndRefresh(viewModel.Ref, "Refresh Search Reference failed");
 
-            if (viewModel.SrcFound.IsDo && viewModel.SrcFound.IsAllDelete && viewModel.SrcFound.Dest.Info.Exists)
-            {
-                Needed.TryCatchWithMsgBox(viewModel.SrcFound.Dest.DeleteContent, "Delete SrcFound Content failed");
-            }
+            if (viewModel.SrcFound.IsDo) Utils.DeleteContent(viewModel.SrcFound, "Delete SrcFound Content failed");
+            if (viewModel.SrcNot.IsDo) Utils.DeleteContent(viewModel.SrcNot, "Delete SrcNot Content failed");
+            if (viewModel.RefFound.IsDo) Utils.DeleteContent(viewModel.RefFound, "Delete ReferenceFound Content failed");
 
-            if (viewModel.SrcNot.IsDo && viewModel.SrcNot.IsAllDelete && viewModel.SrcNot.Dest.Info.Exists)
-            {
-                Needed.TryCatchWithMsgBox(viewModel.SrcNot.Dest.DeleteContent, "Delete SrcNot Content failed");
-            }
+            referenceFiles = refFiles;
 
-            if (viewModel.RefFound.IsDo &&viewModel.RefFound.IsAllDelete&& viewModel.RefFound.Dest.Info.Exists)
-            {
-                Needed.TryCatchWithMsgBox(viewModel.RefFound.Dest.DeleteContent, "Delete ReferenceFound Content failed");
-            }
-
-            referenceFiles = viewModel.Ref.GetFiles();
-
-            return viewModel.Src.GetFiles().ToArray();
+            return srcFiles;
         }
 
         protected override void Do(FileInfo Src)
@@ -47,14 +34,14 @@ namespace MainProgram
                 {
                     if (viewModel.SrcFound.IsDo)
                     {
-                        FileInfo Dest = new FileInfo(Path.Combine(viewModel.SrcFound.Dest.FullPath, refFile.Name));
-                        Needed.CopyMoveFile(Src, Dest, viewModel.SrcFound.IsCopy);
+                        FileInfo Dest = new FileInfo(Path.Combine(viewModel.SrcFound.Dest.FullName, refFile.Name));
+                        Utils.CopyMoveFile(Src, Dest, viewModel.SrcFound.IsCopy);
                     }
 
                     if (viewModel.RefFound.IsDo)
                     {
-                        FileInfo Dest = new FileInfo(Path.Combine(viewModel.RefFound.Dest.FullPath, refFile.Name));
-                        Needed.CopyMoveFile(refFile, Dest, viewModel.RefFound.IsCopy);
+                        FileInfo Dest = new FileInfo(Path.Combine(viewModel.RefFound.Dest.FullName, refFile.Name));
+                        Utils.CopyMoveFile(refFile, Dest, viewModel.RefFound.IsCopy);
                     }
 
                     found = true;
@@ -64,11 +51,9 @@ namespace MainProgram
 
             if (!found && viewModel.SrcNot.IsDo)
             {
-                FileInfo Dest = new FileInfo(Path.Combine(viewModel.SrcNot.Dest.FullPath, Src.Name));
-                Needed.CopyMoveFile(Src, Dest, viewModel.SrcNot.IsCopy);
+                FileInfo Dest = new FileInfo(Path.Combine(viewModel.SrcNot.Dest.FullName, Src.Name));
+                Utils.CopyMoveFile(Src, Dest, viewModel.SrcNot.IsCopy);
             }
-
-            //viewModel.ThreadHandler.Release();
         }
 
         private bool CompareFileInfos(FileInfo file1, FileInfo file2)

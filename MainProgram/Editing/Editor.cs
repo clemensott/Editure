@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FolderFile;
+using System;
 using System.IO;
 using System.Windows.Media.Imaging;
 
@@ -15,23 +16,28 @@ namespace MainProgram
 
         public void Open()
         {
-            Needed.TryCatchWithMsgBox(viewModel.Src.RefreshFolderAndFiles, "Refresh Edit Src failed");
+            FileInfo[] files;
 
-            viewModel.Pictures = new CurrentItemList<FileInfo>(viewModel.Src.GetFiles(), Needed.DefaultFileInfo);
+            if (viewModel.Src.SubType == SubfolderType.No)
+            {
+                Utils.TryCatchWithMsgBox(() => viewModel.Src.SubType = SubfolderType.This, "Refresh Edit Src failed");
+                files = viewModel.Src.Files;
+            }
+            else files = Utils.TryCatchWithMsgBox(viewModel.Src.Refresh, "Refresh Edit Src failed");
+
+            viewModel.Pictures = new CurrentItemList<FileInfo>(files, Utils.DefaultFileInfo);
         }
 
         protected override FileInfo[] Initialize()
         {
-            Needed.TryCatchWithMsgBox(viewModel.Src.RefreshFolderAndFiles, "Refresh Edit Src failed");
-
-            return viewModel.Src.GetFiles();
+            return Utils.TryCatchWithMsgBox(viewModel.Src.Refresh, "Refresh Edit Src failed");
         }
 
         protected override void Do(FileInfo Src)
         {
             try
             {
-                string DestPath = Path.Combine(viewModel.Dest.FullPath, Src.Name);
+                string DestPath = Path.Combine(viewModel.Dest.FullName, Src.Name);
                 EditImage img = viewModel.CreateEditImage(Src.FullName);
 
                 SavePicture(img.GetEditBitmap(), DestPath);
@@ -39,13 +45,13 @@ namespace MainProgram
             catch (Exception e)
             {
                 System.Diagnostics.Debug.WriteLine("Editor.Do");
-                System.Diagnostics.Debug.WriteLine(Needed.GetMessage(e));
+                System.Diagnostics.Debug.WriteLine(Utils.GetMessage(e));
             }
         }
 
         public void SaveCurrentPicture()
         {
-            string DestPath = Path.Combine(viewModel.Dest.FullPath, viewModel.Pictures.CurrentItem.Name);
+            string DestPath = Path.Combine(viewModel.Dest.FullName, viewModel.Pictures.CurrentItem.Name);
             IEncoderManager encoderManager = viewModel.CurrentPictureEncoder;
 
             SavePicture(viewModel.ShowImg, DestPath, encoderManager);
@@ -80,7 +86,7 @@ namespace MainProgram
             catch (Exception e)
             {
                 System.Diagnostics.Debug.WriteLine("Editor.SavePicture");
-                System.Diagnostics.Debug.WriteLine(Needed.GetMessage(e));
+                System.Diagnostics.Debug.WriteLine(Utils.GetMessage(e));
             }
         }
 

@@ -102,9 +102,9 @@
         <CheckBox Grid.Column="16" Grid.Row="1" Content="Y" VerticalAlignment="Center" HorizontalAlignment="Center"
                   IsChecked="{Binding IsFlipY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <ff:FolderPicker Grid.Column="1" Grid.Row="0" WithCheckbox="True" 
+        <ff:FolderPicker Grid.Column="1" Grid.Row="0" 
                          Folder="{Binding Src, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-        <ff:FolderPicker Grid.Column="1" Grid.Row="1" WithCheckbox="False" 
+        <ff:FolderPicker Grid.Column="1" Grid.Row="1" 
                          Folder="{Binding Dest, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBox Grid.Column="5" Grid.Row="0" Margin="3" VerticalAlignment="Center" 

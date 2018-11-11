@@ -76,17 +76,8 @@ namespace MainProgram
 
         public string DestPath
         {
-            get { return Dest?.FullPath ?? string.Empty; }
-            set
-            {
-                value = Path.GetFullPath(value);
-
-                if (value == DestPath) return;
-
-                Dest = new Folder(value, SubfolderType.This);
-                OnPropertyChanged("Dest");
-                OnPropertyChanged("DestPath");
-            }
+            get { return Dest?.FullName ?? string.Empty; }
+            set { if (value != DestPath && Directory.Exists(value)) Dest = new Folder(value, SubfolderType.This); }
         }
 
         public DestinationFolder()
@@ -94,7 +85,6 @@ namespace MainProgram
             IsDo = false;
             IsAllDelete = false;
             IsCopy = true;
-            Dest = new Folder(string.Empty, SubfolderType.This);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

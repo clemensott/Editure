@@ -42,10 +42,10 @@ namespace MainProgram.Save
             Window.Maximized = vm.WindowState == System.Windows.WindowState.Maximized;
 
 
-            Search.SrcSubfolderType = vm.Search.Src.SubfolderType;
-            Search.ReferenceSubfolderType = vm.Search.Ref.SubfolderType;
-            Search.SrcPath = vm.Search.Src.FullPath;
-            Search.RefPath = vm.Search.Ref.FullPath;
+            Search.SrcSubfolderType = vm.Search.Src.SubType;
+            Search.ReferenceSubfolderType = vm.Search.Ref.SubType;
+            Search.SrcPath = vm.Search.Src.OriginalPath;
+            Search.RefPath = vm.Search.Ref.OriginalPath;
 
             Search.SrcFound = vm.Search.SrcFound;
             Search.SrcNot = vm.Search.SrcNot;
@@ -54,8 +54,8 @@ namespace MainProgram.Save
             Search.WithExtentions = vm.Search.IsWithExtension;
 
 
-            Choose.SrcSubfolderType = vm.Choose.Src.SubfolderType;
-            Choose.SrcPath = vm.Choose.Src.FullPath;
+            Choose.SrcSubfolderType = vm.Choose.Src.SubType;
+            Choose.SrcPath = vm.Choose.Src.OriginalPath;
 
             Choose.Have = vm.Choose.Have;
             Choose.Havent = vm.Choose.Havent;
@@ -66,9 +66,9 @@ namespace MainProgram.Save
             Choose.MaxHeight = vm.Choose.Max.Height;
 
 
-            Edit.SrcSubfolderType = vm.Edit.Src.SubfolderType;
-            Edit.SrcPath = vm.Edit.Src.FullPath;
-            Edit.DestPath = vm.Edit.Dest.FullPath;
+            Edit.SrcSubfolderType = vm.Edit.Src.SubType;
+            Edit.SrcPath = vm.Edit.Src.OriginalPath;
+            Edit.DestPath = vm.Edit.Dest.OriginalPath;
 
             Edit.FlipX = vm.Edit.IsFlipX;
             Edit.FlipY = vm.Edit.IsFlipY;
@@ -81,13 +81,13 @@ namespace MainProgram.Save
             Edit.EditEncoder = vm.Edit.EncoderType;
 
 
-            Copy.SrcSubfolderType = vm.Copy.Src.SubfolderType;
-            Copy.SrcPath = vm.Copy.Src.FullPath;
-            Copy.DestPath = vm.Copy.Dest.FullPath;
+            Copy.SrcSubfolderType = vm.Copy.Src.SubType;
+            Copy.SrcPath = vm.Copy.Src.OriginalPath;
+            Copy.DestPath = vm.Copy.Dest.OriginalPath;
 
 
-            Mix.SubfolderType = vm.Mix.Folder.SubfolderType;
-            Mix.Path = vm.Mix.Folder.FullPath;
+            Mix.SubfolderType = vm.Mix.Folder.SubType;
+            Mix.Path = vm.Mix.Folder.OriginalPath;
             Mix.Mix = vm.Mix.IsMix;
             Mix.Auto = vm.Mix.IsAuto;
         }

@@ -27,7 +27,7 @@
             <Label DockPanel.Dock="Right"/>
         </DockPanel>
 
-        <ff:FolderPicker Grid.Row="3" TwoLines="True" WithCheckbox="False" IsEnabled="{Binding IsDo}"
+        <ff:FolderPicker Grid.Row="3" SingleLine="False" IsEnabled="{Binding IsDo}"
                          Folder="{Binding Dest,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </UserControl>

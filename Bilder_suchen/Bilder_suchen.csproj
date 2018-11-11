@@ -38,9 +38,6 @@
     <ApplicationIcon>42.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FolderFileLib">
-      <HintPath>..\FolderFileLib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -155,6 +152,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\OrdnerDatei\FolderFileLib.csproj">
+      <Project>{0de5f7b2-633a-4acf-b6ad-df37bd9e68d9}</Project>
+      <Name>FolderFileLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MainProgram\MainProgram.csproj">
       <Project>{6c15c022-dd60-4d8c-8d38-2f01b227f24c}</Project>
       <Name>MainProgram</Name>

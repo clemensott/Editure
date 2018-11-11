@@ -14,23 +14,23 @@ namespace MainProgram
 
         public void Open()
         {
-            Needed.TryCatchWithMsgBox(viewModel.Src.RefreshFolderAndFiles, "Refresh Copy Src failed");
+            FileInfo[] files = Utils.SetSubTypeAndRefresh(viewModel.Src, "Refresh Copy Src failed");
 
-            viewModel.Pictures = new CurrentItemList<FileInfo>(viewModel.Src.GetFiles(), Needed.DefaultFileInfo);
+            viewModel.Pictures = new CurrentItemList<FileInfo>(files, Utils.DefaultFileInfo);
         }
 
         public void CopyCurrentPicture()
         {
-            string DestPath = Path.Combine(viewModel.Dest.FullPath, viewModel.Pictures.CurrentItem.Name);
+            string DestPath = Path.Combine(viewModel.Dest.FullName, viewModel.Pictures.CurrentItem.Name);
 
             try
             {
                 if (File.Exists(DestPath)) File.Delete(DestPath);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 System.Diagnostics.Debug.WriteLine("Copier.CopyCurrentPicture1");
-                System.Diagnostics.Debug.WriteLine(Needed.GetMessage(e));
+                System.Diagnostics.Debug.WriteLine(Utils.GetMessage(e));
             }
 
             try
@@ -40,7 +40,7 @@ namespace MainProgram
             catch (Exception e)
             {
                 System.Diagnostics.Debug.WriteLine("Copier.CopyCurrentPicture2");
-                System.Diagnostics.Debug.WriteLine(Needed.GetMessage(e));
+                System.Diagnostics.Debug.WriteLine(Utils.GetMessage(e));
             }
         }
 
@@ -55,7 +55,7 @@ namespace MainProgram
             catch (Exception e)
             {
                 System.Diagnostics.Debug.WriteLine("Copier.DeleteCurrentPicture2");
-                System.Diagnostics.Debug.WriteLine(Needed.GetMessage(e));
+                System.Diagnostics.Debug.WriteLine(Utils.GetMessage(e));
             }
         }
     }

@@ -27,9 +27,9 @@
         <Label Grid.Column="0" Grid.Row="0" Content="Von:" Margin="3" VerticalAlignment="Center"/>
         <Label Grid.Column="1" Grid.Row="0" Content="Zu:" Margin="3" VerticalAlignment="Center"/>
 
-        <ff:FolderPicker Grid.Column="0" Grid.Row="1" Margin="0,0,0,20" TwoLines="True" WithCheckbox="True"
+        <ff:FolderPicker Grid.Column="0" Grid.Row="1" Margin="0,0,0,20" SingleLine="False"
                          Folder="{Binding Src, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-        <ff:FolderPicker Grid.Column="1" Grid.Row="1" TwoLines="True" WithCheckbox="True" Margin="5,0,0,0"
+        <ff:FolderPicker Grid.Column="1" Grid.Row="1" SingleLine="False" Margin="5,0,0,0"
                          Folder="{Binding Ref, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
         <local:DestFolderControl Grid.Column="0" Grid.Row="2" Margin="3,3,3,20" DataContext="{Binding SrcFound}"/>

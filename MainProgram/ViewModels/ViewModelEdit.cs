@@ -180,7 +180,7 @@ namespace MainProgram
 
         public CurrentItemList<FileInfo> Pictures
         {
-            get { return pictures ?? new CurrentItemList<FileInfo>(Needed.DefaultFileInfo); }
+            get { return pictures ?? new CurrentItemList<FileInfo>(Utils.DefaultFileInfo); }
             set
             {
                 if (value == pictures) return;
@@ -221,7 +221,7 @@ namespace MainProgram
             Src = new Folder("", SubfolderType.This);
             Dest = new Folder("", SubfolderType.This);
 
-            Pictures = new CurrentItemList<FileInfo>(Needed.DefaultFileInfo);
+            Pictures = new CurrentItemList<FileInfo>(Utils.DefaultFileInfo);
 
             Editor = new Editor(this);
         }

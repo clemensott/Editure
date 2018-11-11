@@ -5,7 +5,7 @@ using System.Windows;
 
 namespace MainProgram
 {
-    class Needed
+    static class Utils
     {
         public static readonly FileInfo DefaultFileInfo = GetDefaultFileInfo();
 
@@ -29,6 +29,35 @@ namespace MainProgram
             catch (Exception e)
             {
                 ShowMessageBox(e, name);
+            }
+        }
+
+        public static T TryCatchWithMsgBox<T>(Func<T> action, string name)
+        {
+            try
+            {
+                return action();
+            }
+            catch (Exception e)
+            {
+                ShowMessageBox(e, name);
+                return default(T);
+            }
+        }
+
+        public static FileInfo[] SetSubTypeAndRefresh(Folder folder, string errorMessage)
+        {
+            if (folder.SubType != SubfolderType.No) return TryCatchWithMsgBox(folder.Refresh, errorMessage);
+
+            TryCatchWithMsgBox(() => folder.SubType = SubfolderType.This, errorMessage);
+            return folder.Files;
+        }
+
+        public static void DeleteContent(DestinationFolder folder, string errorMessage)
+        {
+            if (folder.IsAllDelete && (folder.Dest?.Directory?.Exists ?? false))
+            {
+                TryCatchWithMsgBox(folder.Dest.DeleteContent, errorMessage);
             }
         }
 

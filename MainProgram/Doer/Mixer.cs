@@ -7,6 +7,7 @@ namespace MainProgram
 {
     public class Mixer
     {
+        private static readonly Random ran = new Random();
         private ViewModelMix viewModel;
 
         public Mixer(ViewModelMix parent)
@@ -16,32 +17,33 @@ namespace MainProgram
 
         public void Mix()
         {
-            Random ran = new Random();
+            string message = "Refresh Mix Folder failed before Mixing";
+            List<FileInfo> srcFileInfos = Utils.SetSubTypeAndRefresh(viewModel.Folder, message)?.ToList();
 
-            Needed.TryCatchWithMsgBox(viewModel.Folder.RefreshFolderAndFiles, "Refresh Mix Folder failed before Mixing");
-            List<FileInfo> SrcFileInfos = viewModel.Folder.GetFiles().ToList();
+            if (srcFileInfos == null) return;
 
-            while (SrcFileInfos.Count > 0)
+            while (srcFileInfos.Count > 0)
             {
-                int index = ran.Next(SrcFileInfos.Count);
+                int index = ran.Next(srcFileInfos.Count);
 
-                FileInfo Dest = GetMixedFileInfo(SrcFileInfos[index]);
+                FileInfo Dest = GetMixedFileInfo(srcFileInfos[index]);
 
                 try
                 {
-                    SrcFileInfos[index].MoveTo(Dest.FullName);
+                    srcFileInfos[index].MoveTo(Dest.FullName);
                 }
                 catch { }
 
-                SrcFileInfos.RemoveAt(index);
+                srcFileInfos.RemoveAt(index);
             }
         }
 
         public void Demix()
         {
-            Needed.TryCatchWithMsgBox(viewModel.Folder.RefreshFolderAndFiles, "Refresh Mix Folder failed before Demixing");
+            string message = "Refresh Mix Folder failed before Demixing";
+            FileInfo[] files = Utils.SetSubTypeAndRefresh(viewModel.Folder, message);
 
-            foreach (FileInfo Src in viewModel.Folder.GetFiles())
+            foreach (FileInfo Src in files ?? Enumerable.Empty<FileInfo>())
             {
                 FileInfo Dest = GetDemixedFileInfo(Src);
 

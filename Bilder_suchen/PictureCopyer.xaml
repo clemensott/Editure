@@ -30,10 +30,10 @@
         <Label Grid.Row="0" Content="Von:"/>
         <Label Grid.Row="1" Content="Zu:"/>
 
-        <ff:FolderPicker Grid.Column="1" Grid.Row="0" WithCheckbox="True" 
-                         Folder="{Binding Src, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-        <ff:FolderPicker Grid.Column="1" Grid.Row="1" WithCheckbox="False" 
-                         Folder="{Binding Dest, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <ff:FolderPicker Grid.Column="1" Grid.Row="0"
+                            Folder="{Binding Src, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <ff:FolderPicker Grid.Column="1" Grid.Row="1"
+                            Folder="{Binding Dest, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBox Grid.Column="3" Margin="3" VerticalAlignment="Center" 
                  Text="{Binding CurrentPictureIndex,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
