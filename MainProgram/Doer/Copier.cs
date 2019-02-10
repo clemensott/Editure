@@ -30,7 +30,7 @@ namespace MainProgram
             catch (Exception e)
             {
                 System.Diagnostics.Debug.WriteLine("Copier.CopyCurrentPicture1");
-                System.Diagnostics.Debug.WriteLine(Utils.GetMessage(e));
+                System.Diagnostics.Debug.WriteLine(e.ToString());
             }
 
             try
@@ -40,7 +40,7 @@ namespace MainProgram
             catch (Exception e)
             {
                 System.Diagnostics.Debug.WriteLine("Copier.CopyCurrentPicture2");
-                System.Diagnostics.Debug.WriteLine(Utils.GetMessage(e));
+                System.Diagnostics.Debug.WriteLine(e.ToString());
             }
         }
 
@@ -55,7 +55,7 @@ namespace MainProgram
             catch (Exception e)
             {
                 System.Diagnostics.Debug.WriteLine("Copier.DeleteCurrentPicture2");
-                System.Diagnostics.Debug.WriteLine(Utils.GetMessage(e));
+                System.Diagnostics.Debug.WriteLine(e.ToString());
             }
         }
     }

@@ -45,7 +45,7 @@ namespace MainProgram
             catch (Exception e)
             {
                 System.Diagnostics.Debug.WriteLine("Editor.Do");
-                System.Diagnostics.Debug.WriteLine(Utils.GetMessage(e));
+                System.Diagnostics.Debug.WriteLine(e.ToString());
             }
         }
 
@@ -86,7 +86,7 @@ namespace MainProgram
             catch (Exception e)
             {
                 System.Diagnostics.Debug.WriteLine("Editor.SavePicture");
-                System.Diagnostics.Debug.WriteLine(Utils.GetMessage(e));
+                System.Diagnostics.Debug.WriteLine(e.ToString());
             }
         }
 

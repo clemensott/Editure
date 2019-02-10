@@ -219,7 +219,7 @@ namespace MainProgram
             }
             catch (Exception exc)
             {
-                MessageBox.Show(exc.Message);
+                MessageBox.Show(exc.Message, Src.FullName);
             }
         }
     }

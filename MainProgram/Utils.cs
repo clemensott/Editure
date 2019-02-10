@@ -28,7 +28,7 @@ namespace MainProgram
             }
             catch (Exception e)
             {
-                ShowMessageBox(e, name);
+                MessageBox.Show(e.ToString(), name);
             }
         }
 
@@ -40,7 +40,7 @@ namespace MainProgram
             }
             catch (Exception e)
             {
-                ShowMessageBox(e, name);
+                MessageBox.Show(e.ToString(), name);
                 return default(T);
             }
         }
@@ -78,44 +78,8 @@ namespace MainProgram
             }
             catch (Exception e)
             {
-                ShowMessageBox(e, "Needed.CopyMoveFile");
+                MessageBox.Show(e.ToString(), "Utils.CopyMoveFile");
             }
-        }
-
-        public static void ShowMessageBox(Exception e, string name)
-        {
-            string message = string.Empty;
-
-            do
-            {
-                message += string.Format("{0}:\n{1}", e.GetType().Name, e.Message);
-
-                if (e.InnerException == null) break;
-
-                message += "\n\n";
-                e = e.InnerException;
-            } while (true);
-
-            MessageBox.Show(message, name);
-        }
-
-        public static string GetMessage(Exception e)
-        {
-            if (e == null) return "Exception is null";
-
-            string message = string.Empty;
-
-            while (true)
-            {
-                message += string.Format("{0}:\n{1}", e.GetType().Name, e.Message);
-
-                if (e.InnerException == null) break;
-
-                message += "\n\n";
-                e = e.InnerException;
-            }
-
-            return message;
         }
     }
 }
