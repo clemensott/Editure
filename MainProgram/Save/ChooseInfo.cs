@@ -5,8 +5,7 @@ namespace MainProgram.Save
     public class ChooseInfo
     {
         public int MinWidth, MinHeight, MaxWidth, MaxHeight;
-        public string SrcPath;
-        public SubfolderType SrcSubfolderType;
+        public SerializableFolder? Src;
         public DestinationFolder Have, Havent;
 
         public ChooseInfo()
@@ -16,8 +15,7 @@ namespace MainProgram.Save
             MaxWidth = 0;
             MaxHeight = 0;
 
-            SrcPath = string.Empty;
-            SrcSubfolderType = SubfolderType.This;
+            Src = null;
 
             Have = new DestinationFolder();
             Havent = new DestinationFolder();

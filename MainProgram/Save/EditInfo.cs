@@ -1,13 +1,12 @@
 ﻿using FolderFile;
-using System.Drawing;
 
 namespace MainProgram.Save
 {
     public class EditInfo
     {
         public bool FlipX, FlipY;
-        public string SrcPath, DestPath;
-        public SubfolderType SrcSubfolderType;
+        public SerializableFolder? Src;
+        public string DestPath;
         public IntSize Wanna;
         public IntPoint Offset;
         public EditMode EditMode;
@@ -19,10 +18,8 @@ namespace MainProgram.Save
             FlipX = false;
             FlipY = false;
 
-            SrcPath = string.Empty;
+            Src = null;
             DestPath = string.Empty;
-
-            SrcSubfolderType = SubfolderType.This;
 
             Wanna = new IntSize();
             Offset = new IntPoint();

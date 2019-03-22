@@ -1,10 +1,5 @@
 ﻿using FolderFile;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MainProgram
 {
@@ -85,7 +80,7 @@ namespace MainProgram
 
         public ViewModelMix()
         {
-            Folder = new Folder("", SubfolderType.This);
+            Folder = null;
 
             Mixer = new Mixer(this);
         }

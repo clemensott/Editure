@@ -4,15 +4,13 @@ namespace MainProgram.Save
 {
     public class CopyInfo
     {
-        public string SrcPath, DestPath;
-        public SubfolderType SrcSubfolderType;
+        public string DestPath;
+        public SerializableFolder? Src;
 
         public CopyInfo()
         {
-            SrcPath = string.Empty;
+            Src = null;
             DestPath = string.Empty;
-
-            SrcSubfolderType = SubfolderType.This;
         }
     }
 }

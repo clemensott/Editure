@@ -6,6 +6,8 @@ namespace MainProgram.Save
 {
     public class SaveClass
     {
+        private static readonly XmlSerializer ser = new XmlSerializer(typeof(SaveClass));
+
         public WindowInfo Window;
 
         public SearchInfo Search;
@@ -42,10 +44,8 @@ namespace MainProgram.Save
             Window.Maximized = vm.WindowState == System.Windows.WindowState.Maximized;
 
 
-            Search.SrcSubfolderType = vm.Search.Src.SubType;
-            Search.ReferenceSubfolderType = vm.Search.Ref.SubType;
-            Search.SrcPath = vm.Search.Src.OriginalPath;
-            Search.RefPath = vm.Search.Ref.OriginalPath;
+            Search.Src = vm.Search.Src;
+            Search.Ref = vm.Search.Ref;
 
             Search.SrcFound = vm.Search.SrcFound;
             Search.SrcNot = vm.Search.SrcNot;
@@ -54,8 +54,7 @@ namespace MainProgram.Save
             Search.WithExtentions = vm.Search.IsWithExtension;
 
 
-            Choose.SrcSubfolderType = vm.Choose.Src.SubType;
-            Choose.SrcPath = vm.Choose.Src.OriginalPath;
+            Choose.Src = vm.Choose.Src;
 
             Choose.Have = vm.Choose.Have;
             Choose.Havent = vm.Choose.Havent;
@@ -66,9 +65,8 @@ namespace MainProgram.Save
             Choose.MaxHeight = vm.Choose.Max.Height;
 
 
-            Edit.SrcSubfolderType = vm.Edit.Src.SubType;
-            Edit.SrcPath = vm.Edit.Src.OriginalPath;
-            Edit.DestPath = vm.Edit.Dest.OriginalPath;
+            Edit.Src = vm.Edit.Src;
+            Edit.DestPath = vm.Edit.Dest?.OriginalPath;
 
             Edit.FlipX = vm.Edit.IsFlipX;
             Edit.FlipY = vm.Edit.IsFlipY;
@@ -81,13 +79,11 @@ namespace MainProgram.Save
             Edit.EditEncoder = vm.Edit.EncoderType;
 
 
-            Copy.SrcSubfolderType = vm.Copy.Src.SubType;
-            Copy.SrcPath = vm.Copy.Src.OriginalPath;
-            Copy.DestPath = vm.Copy.Dest.OriginalPath;
+            Copy.Src = vm.Copy.Src;
+            Copy.DestPath = vm.Copy.Dest?.OriginalPath;
 
 
-            Mix.SubfolderType = vm.Mix.Folder.SubType;
-            Mix.Path = vm.Mix.Folder.OriginalPath;
+            Mix.Folder = vm.Mix.Folder;
             Mix.Mix = vm.Mix.IsMix;
             Mix.Auto = vm.Mix.IsAuto;
         }
@@ -99,6 +95,7 @@ namespace MainProgram.Save
 
         public static ViewModel Load(string path)
         {
+            Folder folder;
             SaveClass sc = LoadSaveClass(path);
             ViewModel vm = new ViewModel
             {
@@ -109,9 +106,8 @@ namespace MainProgram.Save
                 WindowState = sc.Window.Maximized ? System.Windows.WindowState.Maximized : System.Windows.WindowState.Normal
             };
 
-
-            vm.Search.Src = new Folder(sc.Search.SrcPath, sc.Search.SrcSubfolderType);
-            vm.Search.Ref = new Folder(sc.Search.RefPath, sc.Search.ReferenceSubfolderType);
+            if (Folder.TryCreate(sc.Search.Src, out folder)) vm.Search.Src = folder;
+            if (Folder.TryCreate(sc.Search.Ref, out folder)) vm.Search.Ref = folder;
 
             vm.Search.SrcFound = sc.Search.SrcFound;
             vm.Search.SrcNot = sc.Search.SrcNot;
@@ -120,7 +116,7 @@ namespace MainProgram.Save
             vm.Search.IsWithExtension = sc.Search.WithExtentions;
 
 
-            vm.Choose.Src = new Folder(sc.Choose.SrcPath, sc.Choose.SrcSubfolderType);
+            if (Folder.TryCreate(sc.Choose.Src, out folder)) vm.Choose.Src = folder;
 
             vm.Choose.Have = sc.Choose.Have;
             vm.Choose.Havent = sc.Choose.Havent;
@@ -129,8 +125,9 @@ namespace MainProgram.Save
             vm.Choose.Max = new IntSize(sc.Choose.MaxWidth, sc.Choose.MaxHeight);
 
 
-            vm.Edit.Src = new Folder(sc.Edit.SrcPath, sc.Edit.SrcSubfolderType);
-            vm.Edit.Dest = new Folder(sc.Edit.DestPath, SubfolderType.This);
+            if (Folder.TryCreate(sc.Choose.Src, out folder)) vm.Choose.Src = folder;
+            if (Folder.TryCreate(sc.Edit.Src, out folder)) vm.Edit.Src = folder;
+            if (Folder.TryCreate(sc.Edit.DestPath, SubfolderType.This, out folder)) vm.Edit.Dest = folder;
 
             vm.Edit.IsFlipX = sc.Edit.FlipX;
             vm.Edit.IsFlipX = sc.Edit.FlipY;
@@ -143,11 +140,11 @@ namespace MainProgram.Save
             vm.Edit.EncoderType = sc.Edit.EditEncoder;
 
 
-            vm.Copy.Src = new Folder(sc.Copy.SrcPath, sc.Copy.SrcSubfolderType);
-            vm.Copy.Dest = new Folder(sc.Copy.DestPath, SubfolderType.This);
+            if (Folder.TryCreate(sc.Copy.Src, out folder)) vm.Copy.Src = folder;
+            if (Folder.TryCreate(sc.Copy.DestPath, SubfolderType.This, out folder)) vm.Copy.Dest = folder;
 
 
-            vm.Mix.Folder = new Folder(sc.Mix.Path, sc.Mix.SubfolderType);
+            if (Folder.TryCreate(sc.Mix.Folder, out folder)) vm.Mix.Folder = folder;
 
             vm.Mix.IsMix = sc.Mix.Mix;
             vm.Mix.IsAuto = sc.Mix.Auto;
@@ -164,8 +161,6 @@ namespace MainProgram.Save
         {
             try
             {
-                XmlSerializer ser = new XmlSerializer(typeof(SaveClass));
-
                 using (Stream stream = new FileStream(path, FileMode.OpenOrCreate))
                 {
                     return (SaveClass)ser.Deserialize(stream);
@@ -184,7 +179,6 @@ namespace MainProgram.Save
         public static void Save(ViewModel vm, string path)
         {
             SaveClass saveClass = new SaveClass(vm);
-            XmlSerializer ser = new XmlSerializer(typeof(SaveClass));
             StreamWriter writer = new StreamWriter(path);
 
             ser.Serialize(writer, saveClass);

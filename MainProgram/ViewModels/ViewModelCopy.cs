@@ -2,7 +2,6 @@
 using System;
 using System.ComponentModel;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
@@ -88,7 +87,7 @@ namespace MainProgram
         {
             get
             {
-                return ((pictures?.Count ?? 0) == 0 ? string.Empty : pictures.CurrentItem.Name + " - ") + Title;
+                return (images?.Show == null ? string.Empty : (images.ShowPath + " - ")) + Title;
             }
         }
 
@@ -98,8 +97,8 @@ namespace MainProgram
             timer.Interval = TimeSpan.FromMilliseconds(500);
             timer.Tick += Timer_Tick;
 
-            src = new Folder("", SubfolderType.This);
-            dest = new Folder("", SubfolderType.This);
+            src = null;
+            dest = null;
 
             Copier = new Copier(this);
         }

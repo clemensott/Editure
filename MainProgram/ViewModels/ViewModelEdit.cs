@@ -218,8 +218,8 @@ namespace MainProgram
             ModeType = EditMode.Crop;
             ReferencePosition = EditReferencePositionType.CenterCenter;
 
-            Src = new Folder("", SubfolderType.This);
-            Dest = new Folder("", SubfolderType.This);
+            Src = null;
+            Dest = null;
 
             Pictures = new CurrentItemList<FileInfo>(Utils.DefaultFileInfo);
 

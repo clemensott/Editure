@@ -90,15 +90,15 @@ namespace MainProgram
 
         public ViewModelSearch()
         {
-            Src = new Folder("", SubfolderType.This);
-            Ref = new Folder("", SubfolderType.This);
+            Src = null;
+            Ref = null;
 
             RefFound = new DestinationFolder()
             {
                 IsDo = false,
                 IsAllDelete = false,
                 IsCopy = true,
-                Dest = new Folder("", SubfolderType.This)
+                Dest = null
             };
 
             SrcFound = new DestinationFolder()
@@ -106,7 +106,7 @@ namespace MainProgram
                 IsDo = false,
                 IsAllDelete = false,
                 IsCopy = true,
-                Dest = new Folder("", SubfolderType.This)
+                Dest = null
             };
 
             SrcNot = new DestinationFolder()
@@ -114,7 +114,7 @@ namespace MainProgram
                 IsDo = false,
                 IsAllDelete = false,
                 IsCopy = true,
-                Dest = new Folder("", SubfolderType.This)
+                Dest = null
             };
 
             Searcher = new Searcher(this);

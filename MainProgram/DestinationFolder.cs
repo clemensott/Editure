@@ -77,7 +77,7 @@ namespace MainProgram
         public string DestPath
         {
             get { return Dest?.FullName ?? string.Empty; }
-            set { if (value != DestPath && Directory.Exists(value)) Dest = new Folder(value, SubfolderType.This); }
+            set { Dest = value != DestPath && Directory.Exists(value) ? new Folder(value, SubfolderType.This) : null; }
         }
 
         public DestinationFolder()
