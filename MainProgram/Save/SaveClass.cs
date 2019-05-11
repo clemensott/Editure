@@ -44,8 +44,8 @@ namespace MainProgram.Save
             Window.Maximized = vm.WindowState == System.Windows.WindowState.Maximized;
 
 
-            Search.Src = vm.Search.Src;
-            Search.Ref = vm.Search.Ref;
+            Search.Src = (SerializableFolder?)vm.Search.Src;
+            Search.Ref = (SerializableFolder?)vm.Search.Ref;
 
             Search.SrcFound = vm.Search.SrcFound;
             Search.SrcNot = vm.Search.SrcNot;
@@ -54,7 +54,7 @@ namespace MainProgram.Save
             Search.WithExtentions = vm.Search.IsWithExtension;
 
 
-            Choose.Src = vm.Choose.Src;
+            Choose.Src = (SerializableFolder?)vm.Choose.Src;
 
             Choose.Have = vm.Choose.Have;
             Choose.Havent = vm.Choose.Havent;
@@ -65,7 +65,7 @@ namespace MainProgram.Save
             Choose.MaxHeight = vm.Choose.Max.Height;
 
 
-            Edit.Src = vm.Edit.Src;
+            Edit.Src = (SerializableFolder?)vm.Edit.Src;
             Edit.DestPath = vm.Edit.Dest?.OriginalPath;
 
             Edit.FlipX = vm.Edit.IsFlipX;
@@ -79,11 +79,11 @@ namespace MainProgram.Save
             Edit.EditEncoder = vm.Edit.EncoderType;
 
 
-            Copy.Src = vm.Copy.Src;
+            Copy.Src = (SerializableFolder?)vm.Copy.Src;
             Copy.DestPath = vm.Copy.Dest?.OriginalPath;
 
 
-            Mix.Folder = vm.Mix.Folder;
+            Mix.Folder = (SerializableFolder?)vm.Mix.Folder;
             Mix.Mix = vm.Mix.IsMix;
             Mix.Auto = vm.Mix.IsAuto;
         }
