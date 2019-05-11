@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace MainProgram
 {
-    public struct IntPoint
+    public struct IntPoint : IEquatable<IntPoint>
     {
         public static readonly IntPoint Empty = new IntPoint();
 
@@ -23,14 +23,23 @@ namespace MainProgram
             Y += offset.Y;
         }
 
-        public static bool operator ==(IntPoint p1, IntPoint p2)
+        public override bool Equals(object obj)
         {
-            return p1.X == p2.X && p1.Y == p2.Y;
+            return obj is IntPoint && Equals((IntPoint)obj);
         }
 
-        public static bool operator !=(IntPoint p1, IntPoint p2)
+        public bool Equals(IntPoint other)
         {
-            return p1.X != p2.X || p1.Y != p2.Y;
+            return X == other.X &&
+                   Y == other.Y;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 1861411795;
+            hashCode = hashCode * -1521134295 + X.GetHashCode();
+            hashCode = hashCode * -1521134295 + Y.GetHashCode();
+            return hashCode;
         }
 
         public static implicit operator IntPoint(Point point)
@@ -41,6 +50,16 @@ namespace MainProgram
         public static implicit operator Point(IntPoint point)
         {
             return new Point(point.X, point.Y);
+        }
+
+        public static bool operator ==(IntPoint point1, IntPoint point2)
+        {
+            return point1.Equals(point2);
+        }
+
+        public static bool operator !=(IntPoint point1, IntPoint point2)
+        {
+            return !(point1 == point2);
         }
     }
 }

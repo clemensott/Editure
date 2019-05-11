@@ -1,6 +1,8 @@
-﻿namespace MainProgram
+﻿using System;
+
+namespace MainProgram
 {
-    public struct IntSize
+    public struct IntSize : IEquatable<IntSize>
     {
         public static readonly IntSize Empty = new IntSize();
 
@@ -14,14 +16,33 @@
             Height = height;
         }
 
-        public static bool operator ==(IntSize s1, IntSize s2)
+        public override bool Equals(object obj)
         {
-            return s1.Width == s2.Width && s1.Height == s2.Height;
+            return obj is IntSize && Equals((IntSize)obj);
         }
 
-        public static bool operator !=(IntSize s1, IntSize s2)
+        public bool Equals(IntSize other)
         {
-            return s1.Width != s2.Width || s1.Height != s2.Height;
+            return Width == other.Width &&
+                   Height == other.Height;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 859600377;
+            hashCode = hashCode * -1521134295 + Width.GetHashCode();
+            hashCode = hashCode * -1521134295 + Height.GetHashCode();
+            return hashCode;
+        }
+
+        public static bool operator ==(IntSize size1, IntSize size2)
+        {
+            return size1.Equals(size2);
+        }
+
+        public static bool operator !=(IntSize size1, IntSize size2)
+        {
+            return !(size1 == size2);
         }
     }
 }
