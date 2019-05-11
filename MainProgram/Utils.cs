@@ -55,7 +55,7 @@ namespace MainProgram
 
         public static void DeleteContent(DestinationFolder folder, string errorMessage)
         {
-            if (folder.IsAllDelete && (folder.Dest?.Directory?.Exists ?? false))
+            if (folder.IsAllDelete && (folder.Dest?.Exists ?? false))
             {
                 TryCatchWithMsgBox(folder.Dest.DeleteContent, errorMessage);
             }
