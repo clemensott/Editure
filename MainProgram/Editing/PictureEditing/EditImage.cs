@@ -3,6 +3,7 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using System.Drawing;
 using System.Windows;
+using System.Threading.Tasks;
 
 namespace MainProgram
 {
@@ -29,9 +30,15 @@ namespace MainProgram
         }
 
         public EditImage(string path, IntSize wanna, EditMode modeType, bool flipX, bool flipY,
+            IntPoint offset, EditReferencePositionType referencePositionType) : 
+            this(File.ReadAllBytes(path), wanna, modeType, flipX, flipY, offset, referencePositionType)
+        {
+        }
+
+        public EditImage(byte[] pictureBytes, IntSize wanna, EditMode modeType, bool flipX, bool flipY,
             IntPoint offset, EditReferencePositionType referencePositionType)
         {
-            picBytes = File.ReadAllBytes(path);
+            picBytes = pictureBytes;
 
             BitmapImage originalBmp = LoadBitmap(picBytes, IntSize.Empty);
             OriginalSize = new IntSize(originalBmp.PixelWidth, originalBmp.PixelHeight);
@@ -45,6 +52,13 @@ namespace MainProgram
         public static BitmapImage LoadBitmap(string path)
         {
             return LoadBitmap(File.ReadAllBytes(path), IntSize.Empty);
+        }
+
+        public static async Task<BitmapImage> LoadBitmapAsync(string path)
+        {
+            byte[] bytes = await Task.Run(() => File.ReadAllBytes(path));
+
+            return LoadBitmap(bytes, IntSize.Empty);
         }
 
         private static BitmapImage LoadBitmap(byte[] data, IntSize IntSize)

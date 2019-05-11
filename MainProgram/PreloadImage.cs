@@ -1,94 +1,101 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
 namespace MainProgram
 {
     class PreloadImage
     {
-        private CurrentItemList<FileInfo> pictures;
-        private Tuple<string, BitmapImage> showImg, previousImg, nextImg;
+        private IList<FileInfo> pictures;
+        private Tuple<string, BitmapImage> currentTuple, previousTuple, nextTuple;
 
-        public BitmapImage Show { get { return showImg.Item2; } }
+        public BitmapImage CurrentImg { get { return currentTuple?.Item2; } }
 
-        public string ShowPath { get { return showImg.Item1; } }
+        public string CurrentPath { get { return currentTuple?.Item1; } }
 
-        public BitmapImage Previous { get { return previousImg.Item2; } }
+        public BitmapImage PreviousImg { get { return previousTuple?.Item2; } }
 
-        public string PreviousPath { get { return previousImg.Item1; } }
+        public string PreviousPath { get { return previousTuple?.Item1; } }
 
-        public BitmapImage Next { get { return nextImg.Item2; } }
+        public BitmapImage NextImg { get { return nextTuple?.Item2; } }
 
-        public string NextPath { get { return nextImg.Item1; } }
+        public string NextPath { get { return nextTuple?.Item1; } }
 
-        public PreloadImage(CurrentItemList<FileInfo> pictures)
+        public PreloadImage(IList<FileInfo> pictures)
         {
             this.pictures = pictures;
 
             Clear();
         }
 
-        public bool TrySetShowImage(string path)
+        public async Task<BitmapImage> TryGetImageAsync(string path)
         {
-            if (path == showImg.Item1) return true;
-
-            int showIndex = GetIndexOf(path);
-
-            if (path == previousImg.Item1)
-            {
-                nextImg = showImg;
-                showImg = previousImg;
-                previousImg = GetTuple(showIndex, -1);
-
-                return true;
-            }
-
-            if (path == nextImg.Item1)
-            {
-                previousImg = showImg;
-                showImg = nextImg;
-                nextImg = GetTuple(showIndex, 1);
-
-                return true;
-            }
+            if (path == CurrentPath) return CurrentImg;
+            if (path == PreviousPath) return PreviousImg;
+            if (path == NextPath) return NextImg;
 
             try
             {
-                showImg = new Tuple<string, BitmapImage>(path, EditImage.LoadBitmap(path));
+                return await EditImage.LoadBitmapAsync(path);
             }
-            catch
-            {
-                return false;
-            }
+            catch { }
 
-            previousImg = GetTuple(showIndex, -1);
-            nextImg = GetTuple(showIndex, 1);
-
-            return true;
+            return null;
         }
 
-        private Tuple<string, BitmapImage> GetTuple(int index, int offset)
+        public void SetShowImage(string path, BitmapImage img)
+        {
+            if (path == CurrentPath) return;
+
+            if (path == PreviousPath)
+            {
+                nextTuple = currentTuple;
+                currentTuple = previousTuple;
+                previousTuple = null;
+            }
+
+            if (path == NextPath)
+            {
+                previousTuple = currentTuple;
+                currentTuple = nextTuple;
+                nextTuple = null;
+            }
+
+            currentTuple = new Tuple<string, BitmapImage>(path, img);
+            previousTuple = null;
+            nextTuple = null;
+        }
+
+        public async Task UpdateOtherImages()
+        {
+            int showIndex = GetIndexOf(CurrentPath);
+
+            if (showIndex == -1) return;
+
+            if (nextTuple == null) nextTuple = await GetTupleAsync(showIndex, 1);
+            if (previousTuple == null) previousTuple = await GetTupleAsync(showIndex, -1);
+        }
+
+        private async Task<Tuple<string, BitmapImage>> GetTupleAsync(int index, int offset)
         {
             int startIndex = index;
 
-            do
+            if (pictures.Count == 0) return null;
+
+            index = (index + offset + pictures.Count) % pictures.Count;
+
+            try
             {
-                if (pictures.Count == 0) break;
+                string path = pictures[index].FullName;
+                BitmapImage bmp = await EditImage.LoadBitmapAsync(path);
 
-                index = (index + offset + pictures.Count) % pictures.Count;
+                return new Tuple<string, BitmapImage>(path, bmp);
+            }
+            catch { }
 
-                try
-                {
-                    string path = pictures[index].FullName;
-                    BitmapImage bmp = EditImage.LoadBitmap(path);
-
-                    return new Tuple<string, BitmapImage>(path, bmp);
-                }
-                catch { }
-
-            } while (index != startIndex);
-
-            return new Tuple<string, BitmapImage>("", null);
+            return null;
         }
 
         private int GetIndexOf(string path)
@@ -107,9 +114,9 @@ namespace MainProgram
 
         public void Clear()
         {
-            previousImg = new Tuple<string, BitmapImage>("", null);
-            showImg = new Tuple<string, BitmapImage>("", null);
-            nextImg = new Tuple<string, BitmapImage>("", null);
+            previousTuple = null;
+            currentTuple = new Tuple<string, BitmapImage>("", null);
+            nextTuple = null;
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿using FolderFile;
+using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
 namespace MainProgram
@@ -9,16 +12,30 @@ namespace MainProgram
         private const string title = "Bearbeiten";
 
         private Folder src, dest;
-        private CurrentItemList<FileInfo> pictures;
+        private bool isLoadingCurrentImage;
+        private int latestCurrentIndex, setCurrentIndexOffset, currentPictureIndex1;
+        private ObservableCollection<FileInfo> pictures;
         private EditPictureProperties properties;
         private EditImage editImg;
         private EditEncoderType encoderType;
+
+        public bool IsLoadingCurrentImage
+        {
+            get { return isLoadingCurrentImage; }
+            set
+            {
+                if (value == isLoadingCurrentImage) return;
+
+                isLoadingCurrentImage = value;
+                OnPropertyChanged(nameof(IsLoadingCurrentImage));
+            }
+        }
 
         public bool IsImgLoaded { get { return editImg != null; } }
 
         public bool IsFlipX
         {
-            get { return (editImg?.Properties ?? properties).FlipX; }
+            get { return Properties.FlipX; }
             set
             {
                 if (value == IsFlipX) return;
@@ -33,7 +50,7 @@ namespace MainProgram
 
         public bool IsFlipY
         {
-            get { return (editImg?.Properties ?? properties).FlipY; }
+            get { return Properties.FlipY; }
             set
             {
                 if (value == IsFlipY) return;
@@ -48,15 +65,10 @@ namespace MainProgram
 
         public IntSize OriginalSize { get { return editImg?.OriginalSize ?? IntSize.Empty; } }
 
-        public string CurrentPictureIndex
+        public int CurrentPictureIndex1
         {
-            get { return Pictures.CurrentIndexBase1; }
-            set
-            {
-                if (value == CurrentPictureIndex) return;
-
-                Pictures.CurrentIndexBase1.String = value;
-            }
+            get { return currentPictureIndex1; }
+            set { SetPossibleCurrentPictureIndexAsync(value, 0); }
         }
 
         public string AllPictureCountText { get { return "/ " + Pictures.Count; } }
@@ -65,7 +77,7 @@ namespace MainProgram
 
         public IntSize Wanna
         {
-            get { return (editImg?.Properties ?? properties).Wanna; }
+            get { return Properties.Wanna; }
             set
             {
                 if (value == Wanna) return;
@@ -80,7 +92,7 @@ namespace MainProgram
 
         public IntPoint Offset
         {
-            get { return (editImg?.Properties ?? properties).GetRelativeOffset(OriginalSize); }
+            get { return Properties.GetRelativeOffset(OriginalSize); }
             set
             {
                 if (Offset == value) return;
@@ -117,6 +129,8 @@ namespace MainProgram
             }
         }
 
+        public EditPictureProperties Properties { get { return editImg?.Properties ?? properties; } }
+
         public BitmapSource ShowImg
         {
             get
@@ -133,7 +147,7 @@ namespace MainProgram
 
         public EditMode ModeType
         {
-            get { return (editImg?.Properties ?? properties).ModeType; }
+            get { return Properties.ModeType; }
             set
             {
                 if (value == ModeType) return;
@@ -148,7 +162,7 @@ namespace MainProgram
 
         public EditReferencePositionType ReferencePosition
         {
-            get { return (editImg?.Properties ?? properties).ReferencePositionType; }
+            get { return Properties.ReferencePositionType; }
             set
             {
                 if (value == ReferencePosition) return;
@@ -173,24 +187,17 @@ namespace MainProgram
             }
         }
 
-        public IEncoderManager CurrentPictureEncoder
+        public ObservableCollection<FileInfo> Pictures
         {
-            get { return GetEncoder(Pictures.CurrentItem.Extension); }
-        }
-
-        public CurrentItemList<FileInfo> Pictures
-        {
-            get { return pictures ?? new CurrentItemList<FileInfo>(Utils.DefaultFileInfo); }
+            get { return pictures; }
             set
             {
                 if (value == pictures) return;
 
                 pictures = value;
-                pictures.CurrentIndexBase0.ValueChangingEvent += CurrentPictureIndex_ValueChangingEvent;
+                OnPropertyChanged(nameof(Pictures));
 
-                ApplyPictureIndex(pictures.CurrentIndexBase0.Value);
-                UpdatePictures();
-                UpdateShowImg();
+                CurrentPictureIndex1 = 1;
             }
         }
 
@@ -202,7 +209,9 @@ namespace MainProgram
         {
             get
             {
-                return ((pictures?.Count ?? 0) == 0 ? string.Empty : pictures.CurrentItem.Name + " - ") + Title;
+                FileInfo currentFile = GetCurrentPictureFileInfo();
+
+                return currentFile == null ? Title : (currentFile.Name + " - " + Title);
             }
         }
 
@@ -221,44 +230,67 @@ namespace MainProgram
             Src = null;
             Dest = null;
 
-            Pictures = new CurrentItemList<FileInfo>(Utils.DefaultFileInfo);
+            Pictures = new ObservableCollection<FileInfo>();
 
             Editor = new Editor(this);
         }
 
-        private void CurrentPictureIndex_ValueChangingEvent(object sender, ValueChangingEventArgs<int> e)
+        private void SetLatestCurrentIndex(int index)
         {
-            e.Apply = ApplyPictureIndex(e.NewValue);
-
-            UpdatePictures();
-            UpdateOffset();
-            UpdateShowImg();
+            latestCurrentIndex = StdOttStandard.Utils.CycleIndex(index, Pictures.Count, 1);
         }
 
-        private bool ApplyPictureIndex(int newIndex)
+        public async Task SetPreviousPictureAsync()
         {
-            if (Pictures.Count == 0 && newIndex == -1) return true;
+            await SetPossibleCurrentPictureIndexAsync(CurrentPictureIndex1, -1);
+        }
 
-            int index = newIndex;
+        public async Task SetNextPictureAsync()
+        {
+            await SetPossibleCurrentPictureIndexAsync(CurrentPictureIndex1, 1);
+        }
 
-            while (Pictures.Count > 0)
+        public async Task SetPossibleCurrentPictureIndexAsync()
+        {
+            await SetPossibleCurrentPictureIndexAsync(CurrentPictureIndex1, 0);
+        }
+
+        private async Task SetPossibleCurrentPictureIndexAsync(int index, int offset)
+        {
+            latestCurrentIndex = index;
+            setCurrentIndexOffset = offset;
+
+            if (IsLoadingCurrentImage) return;
+            IsLoadingCurrentImage = true;
+
+            do
             {
-                try
-                {
-                    editImg = CreateEditImage(Pictures[index].FullName);
+                SetLatestCurrentIndex(latestCurrentIndex + setCurrentIndexOffset);
+            }
+            while (!await TrySetCurrentPictureIndex1(latestCurrentIndex));
 
-                    if (index != newIndex) Pictures.CurrentIndexBase0.Value = index;
+            IsLoadingCurrentImage = false;
+        }
 
-                    return true;
-                }
-                catch { }
-
-                Pictures.RemoveAt(index);
-
-                if (index >= Pictures.Count) index = Pictures.Count - 1;
+        private async Task<bool> TrySetCurrentPictureIndex1(int value)
+        {
+            if (Pictures.Count == 0)
+            {
+                SetCurrentPictureIndex1(0);
+                return value == 0;
             }
 
-            Pictures.CurrentIndexBase0.Value = -1;
+            try
+            {
+                byte[] bytes = await Task.Run(() => File.ReadAllBytes(GetPictureFileInfo(value).FullName));
+                editImg = CreateEditImage(bytes);
+                SetCurrentPictureIndex1(value);
+
+                return true;
+            }
+            catch { }
+
+            Pictures.RemoveAt(value - 1);
 
             if (editImg != null)
             {
@@ -269,9 +301,33 @@ namespace MainProgram
             return false;
         }
 
+        private void SetCurrentPictureIndex1(int value)
+        {
+            currentPictureIndex1 = value;
+            OnPropertyChanged(nameof(CurrentPictureIndex1));
+
+            UpdateShowImg();
+        }
+
+        public FileInfo GetCurrentPictureFileInfo()
+        {
+            return GetPictureFileInfo(CurrentPictureIndex1);
+        }
+
+        public FileInfo GetPictureFileInfo(int indexBase1)
+        {
+            return Pictures?.ElementAtOrDefault(indexBase1 - 1);
+        }
+
         public EditImage CreateEditImage(string path)
         {
             return new EditImage(path, Wanna, ModeType,
+                IsFlipX, IsFlipY, Offset, ReferencePosition);
+        }
+
+        public EditImage CreateEditImage(byte[] bytes)
+        {
+            return new EditImage(bytes, Wanna, ModeType,
                 IsFlipX, IsFlipY, Offset, ReferencePosition);
         }
 

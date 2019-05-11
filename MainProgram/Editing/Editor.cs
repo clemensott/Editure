@@ -1,5 +1,6 @@
 ﻿using FolderFile;
 using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Media.Imaging;
 
@@ -25,7 +26,7 @@ namespace MainProgram
             }
             else files = Utils.TryCatchWithMsgBox(viewModel.Src.Refresh, "Refresh Edit Src failed");
 
-            viewModel.Pictures = new CurrentItemList<FileInfo>(files, Utils.DefaultFileInfo);
+            viewModel.Pictures = new ObservableCollection<FileInfo>(files);
         }
 
         protected override FileInfo[] Initialize()
@@ -51,8 +52,12 @@ namespace MainProgram
 
         public void SaveCurrentPicture()
         {
-            string DestPath = Path.Combine(viewModel.Dest.FullName, viewModel.Pictures.CurrentItem.Name);
-            IEncoderManager encoderManager = viewModel.CurrentPictureEncoder;
+            FileInfo currentFile = viewModel.GetCurrentPictureFileInfo();
+
+            if (currentFile == null) return;
+
+            string DestPath = Path.Combine(viewModel.Dest.FullName, currentFile.Name);
+            IEncoderManager encoderManager = viewModel.GetEncoder(currentFile.Extension);
 
             SavePicture(viewModel.ShowImg, DestPath, encoderManager);
         }

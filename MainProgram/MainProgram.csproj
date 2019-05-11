@@ -53,7 +53,6 @@
     <Compile Include="Doer\Doer.cs" />
     <Compile Include="Doer\Asker.cs" />
     <Compile Include="Doer\Chooser.cs" />
-    <Compile Include="CurrentItemList.cs" />
     <Compile Include="Doer\Copier.cs" />
     <Compile Include="Doer\Mixer.cs" />
     <Compile Include="Doer\Searcher.cs" />
@@ -94,9 +93,6 @@
     <Compile Include="Save\SearchInfo.cs" />
     <Compile Include="Editing\PictureEditing\EditImage.cs" />
     <Compile Include="Save\WindowInfo.cs" />
-    <Compile Include="TextToVal\Text.cs" />
-    <Compile Include="TextToVal\TextInt.cs" />
-    <Compile Include="TextToVal\ValueChangedEventArgs.cs" />
     <Compile Include="ViewModels\ITitle.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\ViewModelChoose.cs" />
@@ -116,6 +112,14 @@
     <ProjectReference Include="..\..\OrdnerDatei\FolderFileLib.csproj">
       <Project>{0de5f7b2-633a-4acf-b6ad-df37bd9e68d9}</Project>
       <Name>FolderFileLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\StdOttLib\StdOttFrameworkLib\StdOttFrameworkLib.csproj">
+      <Project>{d1334524-78a5-4d16-93bf-27a57c6dbe56}</Project>
+      <Name>StdOttFrameworkLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\StdOttLib\StdOttStandardLib\StdOttStandardLib.csproj">
+      <Project>{a631acbe-454d-4626-a4de-11413c51ad8c}</Project>
+      <Name>StdOttStandardLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

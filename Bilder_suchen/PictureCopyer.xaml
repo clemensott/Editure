@@ -4,10 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Bilder_suchen"
+             xmlns:con="clr-namespace:StdOttFramework.Converters;assembly=StdOttFrameworkLib"
+             xmlns:spi="clr-namespace:StdOttFramework.Converters.Specialized;assembly=StdOttFrameworkLib"
              xmlns:ff="clr-namespace:FolderFile;assembly=FolderFileLib"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600"
              DataContextChanged="Control_DataContextChanged">
+
+    <UserControl.Resources>
+        <con:IntConverter x:Key="indexCon"/>
+        <spi:VisibleCollapsedConverter x:Key="visCon"/>
+    </UserControl.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -16,9 +23,8 @@
             <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="60"/>
-            <ColumnDefinition Width="60"/>
-            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -35,26 +41,41 @@
         <ff:FolderPicker Grid.Column="1" Grid.Row="1"
                             Folder="{Binding Dest, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBox Grid.Column="3" Margin="3" VerticalAlignment="Center" 
-                 Text="{Binding CurrentPictureIndex,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <StackPanel Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBox Margin="3" VerticalAlignment="Center" MinWidth="30"
+                     Text="{Binding CurrentPictureIndex1,Mode=TwoWay,
+                       UpdateSourceTrigger=PropertyChanged,Converter={StaticResource indexCon}}"/>
 
-        <TextBlock Grid.Column="4" Margin="3" VerticalAlignment="Center" 
-                   Text="{Binding AllPictureCountText,Mode=OneWay}"/>
+            <TextBlock Margin="3" VerticalAlignment="Center" Text="/"/>
+            <TextBlock Margin="3" VerticalAlignment="Center" Text="{Binding Pictures.Count}"/>
+        </StackPanel>
 
-        <Button Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="1" Width="100"
+        <Button Grid.Column="3" Grid.Row="1" Width="100"
                 Content="Bilder öffnen" Margin="3" Click="BtnOpen_Click"/>
-        <Button Grid.Column="5" Grid.ColumnSpan="3" Margin="3" 
-                Content="Kopieren und Weiter" Click="BtnNextAndSave_Click"/>
-        <Button Grid.Column="5" Grid.Row="1" Content="Zurück" Margin="3" Click="BtnBack_Click"/>
-        <Button Grid.Column="6" Grid.Row="1" Content="Löschen" Margin="3" Click="BtnDelete_Click"/>
-        <Button Grid.Column="7" Grid.Row="1" Content="Weiter" Margin="3" Click="BtnNext_Click"/>
+        <Button Grid.Column="4" Grid.ColumnSpan="3" Margin="3" 
+                Content="Kopieren und Weiter (S)" Click="BtnNextAndSave_Click"/>
+        <Button Grid.Column="4" Grid.Row="1" Content="Zurück (A)" Margin="3" Width="70" Click="BtnBack_Click"/>
+        <Button Grid.Column="5" Grid.Row="1" Content="Löschen (W)" Margin="3" Width="70" Click="BtnDelete_Click"/>
+        <Button Grid.Column="6" Grid.Row="1" Content="Weiter (D)" Margin="3" Width="70" Click="BtnNext_Click"/>
 
-        <Grid Grid.ColumnSpan="8" Grid.Row="2" Focusable="True"
+        <Grid Grid.ColumnSpan="7" Grid.Row="2" Focusable="True"
               GotFocus="GdImg_GotFocus" LostFocus="GdImg_LostFocus">
             <Image Name="imgShow" Focusable="True" Source="{Binding ShowImg}"
                    MouseDown="ImgShow_MouseDown" KeyDown="ImgShow_KeyDown"/>
             <Image Source="{Binding PreviousImg}" Visibility="Hidden"/>
             <Image Source="{Binding NextImg}" Visibility="Hidden"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <ProgressBar Grid.Column="1" Height="30" IsIndeterminate="True" 
+                             VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                             Visibility="{Binding IsLoadingCurrentImage,Converter={StaticResource visCon}}"/>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

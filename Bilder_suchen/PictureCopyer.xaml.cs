@@ -23,15 +23,15 @@ namespace Bilder_suchen
             viewModel.Copier.Open();
         }
 
-        private void BtnNextAndSave_Click(object sender, RoutedEventArgs e)
+        private async void BtnNextAndSave_Click(object sender, RoutedEventArgs e)
         {
             viewModel.Copier.CopyCurrentPicture();
-            viewModel.Pictures.SetNext();
+            await viewModel.SetNextPictureAsync();
         }
 
-        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        private async void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            viewModel.Pictures.SetPrevious();
+            await viewModel.SetPreviousPictureAsync();
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
@@ -39,9 +39,9 @@ namespace Bilder_suchen
             viewModel.Copier.DeleteCurrentPicture();
         }
 
-        private void BtnNext_Click(object sender, RoutedEventArgs e)
+        private async void BtnNext_Click(object sender, RoutedEventArgs e)
         {
-            viewModel.Pictures.SetNext();
+            await viewModel.SetNextPictureAsync();
         }
 
         private void ImgShow_MouseDown(object sender, MouseButtonEventArgs e)
@@ -61,15 +61,15 @@ namespace Bilder_suchen
             MessageBox.Show(helpText, "Hilfe");
         }
 
-        private void ImgShow_KeyDown(object sender, KeyEventArgs e)
+        private async void ImgShow_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.D) viewModel.Pictures.SetNext();
-            else if (e.Key == Key.A) viewModel.Pictures.SetPrevious();
+            if (e.Key == Key.D) await viewModel.SetNextPictureAsync();
+            else if (e.Key == Key.A) await viewModel.SetPreviousPictureAsync();
             else if (e.Key == Key.W) viewModel.Copier.DeleteCurrentPicture();
             else if (e.Key == Key.S)
             {
                 viewModel.Copier.CopyCurrentPicture();
-                viewModel.Pictures.SetNext();
+                await viewModel.SetNextPictureAsync();
             }
         }
 
