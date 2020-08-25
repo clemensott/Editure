@@ -56,7 +56,6 @@
     <Compile Include="DestinationFolder.cs" />
     <Compile Include="Doer\Doer.cs" />
     <Compile Include="Doer\Chooser.cs" />
-    <Compile Include="CurrentItemList.cs" />
     <Compile Include="Doer\Copier.cs" />
     <Compile Include="Doer\Mixer.cs" />
     <Compile Include="Doer\Searcher.cs" />
@@ -97,9 +96,6 @@
     <Compile Include="Save\SearchInfo.cs" />
     <Compile Include="Editing\PictureEditing\EditImage.cs" />
     <Compile Include="Save\WindowInfo.cs" />
-    <Compile Include="TextToVal\Text.cs" />
-    <Compile Include="TextToVal\TextInt.cs" />
-    <Compile Include="TextToVal\ValueChangedEventArgs.cs" />
     <Compile Include="ViewModels\ITitle.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\ViewModelChoose.cs" />

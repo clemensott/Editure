@@ -1,10 +1,12 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
 using Editure.Backend.Editing.EditMode;
 using Editure.Backend.Editing.ReferencePosition;
 
 namespace Editure.Backend.Editing.PictureEditing
 {
-    public struct EditPictureProperties
+    public struct EditPictureProperties : IEquatable<EditPictureProperties>
     {
         private IntPoint wannaOffset;
 
@@ -123,22 +125,39 @@ namespace Editure.Backend.Editing.PictureEditing
             return crop;
         }
 
-        public static bool operator ==(EditPictureProperties p1, EditPictureProperties p2)
+        public override int GetHashCode()
         {
-            if (p1.FlipX != p2.FlipX) return false;
-            if (p1.FlipY != p2.FlipY) return false;
-            
-            if (p1.wannaOffset != p2.wannaOffset) return false;
-
-            if (p1.ModeType != p2.ModeType) return false;
-            if (p1.ReferencePositionType != p2.ReferencePositionType) return false;
-
-            return true;
+            var hashCode = -223394155;
+            hashCode = hashCode * -1521134295 + EqualityComparer<IntPoint>.Default.GetHashCode(wannaOffset);
+            hashCode = hashCode * -1521134295 + FlipX.GetHashCode();
+            hashCode = hashCode * -1521134295 + FlipY.GetHashCode();
+            hashCode = hashCode * -1521134295 + ModeType.GetHashCode();
+            hashCode = hashCode * -1521134295 + ReferencePositionType.GetHashCode();
+            return hashCode;
         }
 
-        public static bool operator !=(EditPictureProperties p1, EditPictureProperties p2)
+        public override bool Equals(object obj)
         {
-            return !(p1 == p2);
+            return obj is EditPictureProperties && Equals((EditPictureProperties)obj);
+        }
+
+        public bool Equals(EditPictureProperties other)
+        {
+            return wannaOffset.Equals(other.wannaOffset) &&
+                   FlipX == other.FlipX &&
+                   FlipY == other.FlipY &&
+                   ModeType == other.ModeType &&
+                   ReferencePositionType == other.ReferencePositionType;
+        }
+
+        public static bool operator ==(EditPictureProperties properties1, EditPictureProperties properties2)
+        {
+            return properties1.Equals(properties2);
+        }
+
+        public static bool operator !=(EditPictureProperties properties1, EditPictureProperties properties2)
+        {
+            return !(properties1 == properties2);
         }
     }
 }

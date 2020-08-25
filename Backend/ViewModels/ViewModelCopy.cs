@@ -1,6 +1,9 @@
-﻿using System;
+﻿using FolderFile;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
@@ -15,9 +18,23 @@ namespace Editure.Backend.ViewModels
         private const string title = "Copy";
 
         private Folder src, dest;
-        private CurrentItemList<FileInfo> pictures;
+        private bool isLoadingCurrentImage;
+        private int latestCurrentIndex, setCurrentIndexOffset, currentPictureIndex1;
+        private ObservableCollection<FileInfo> pictures;
         private PreloadImage images;
         private readonly DispatcherTimer timer;
+
+        public bool IsLoadingCurrentImage
+        {
+            get { return isLoadingCurrentImage; }
+            set
+            {
+                if (value == isLoadingCurrentImage) return;
+
+                isLoadingCurrentImage = value;
+                OnPropertyChanged(nameof(IsLoadingCurrentImage));
+            }
+        }
 
         public Folder Src
         {
@@ -43,7 +60,7 @@ namespace Editure.Backend.ViewModels
             }
         }
 
-        public string CurrentPictureIndex
+        public int CurrentPictureIndex1
         {
             get => Pictures.CurrentIndexBase1;
             set
@@ -54,30 +71,24 @@ namespace Editure.Backend.ViewModels
             }
         }
 
-        public string AllPictureCountText => "/ " + Pictures.Count;
-
         public ImageSource PreviousImg => images?.Previous ?? new BitmapImage();
 
         public ImageSource ShowImg => images?.Show ?? new BitmapImage();
 
         public ImageSource NextImg => images?.Next ?? new BitmapImage();
 
-        public CurrentItemList<FileInfo> Pictures
+        public ObservableCollection<FileInfo> Pictures
         {
-            get => pictures ?? new CurrentItemList<FileInfo>(Utils.DefaultFileInfo);
+            get => pictures;
             set
             {
                 if (value == pictures) return;
 
                 pictures = value;
-                pictures.CurrentIndexBase0.ValueChangingEvent += CurrentPictureIndex_ValueChangingEvent;
-                images = new PreloadImage(value);
-
-                ApplyPictureIndex(pictures.CurrentIndexBase0.Value);
-
                 OnPropertyChanged("Pictures");
-                OnPropertyChanged("CurrentPictureIndex");
-                OnPropertyChanged("AllPictureCountText");
+
+                images = new PreloadImage(value);
+                CurrentPictureIndex1 = 1;
             }
         }
 
@@ -89,67 +100,109 @@ namespace Editure.Backend.ViewModels
 
         public ViewModelCopy()
         {
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(500);
-            timer.Tick += Timer_Tick;
-
             src = null;
             dest = null;
 
             Copier = new Copier(this);
+            Pictures = new ObservableCollection<FileInfo>();
+            CurrentPictureIndex1 = 0;
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void SetLatestCurrentIndex(int index)
         {
-            timer.Stop();
+            latestCurrentIndex = StdOttStandard.Utils.CycleIndex(index, Pictures.Count, 1);
+        }
+
+        public async Task SetPreviousPictureAsync()
+        {
+            await SetPossibleCurrentPictureIndexAsync(CurrentPictureIndex1, -1);
+        }
+
+        public async Task SetNextPictureAsync()
+        {
+            await SetPossibleCurrentPictureIndexAsync(CurrentPictureIndex1, 1);
+        }
+
+        public async Task SetPossibleCurrentPictureIndexAsync()
+        {
+            await SetPossibleCurrentPictureIndexAsync(CurrentPictureIndex1, 0);
+        }
+
+        private async Task SetPossibleCurrentPictureIndexAsync(int index, int offset)
+        {
+            latestCurrentIndex = index;
+            setCurrentIndexOffset = offset;
+
+            if (IsLoadingCurrentImage) return;
+            IsLoadingCurrentImage = true;
+
+            do
+            {
+                SetLatestCurrentIndex(latestCurrentIndex + setCurrentIndexOffset);
+            }
+            while (!await TrySetCurrentPictureIndex1(latestCurrentIndex));
+
+            IsLoadingCurrentImage = false;
+        }
+
+        private async Task<bool> TrySetCurrentPictureIndex1(int value)
+        {
+            if (Pictures.Count == 0)
+            {
+                SetCurrentPictureIndex1(0);
+                return value == 0;
+            }
+
+            string path = GetPictureFileInfo(value)?.FullName;
+            BitmapImage img = await images.TryGetImageAsync(path);
+
+            if (img != null)
+            {
+                images.SetShowImage(path, img);
+                SetCurrentPictureIndex1(value);
+
+                LoadNextNadPreviousPicture();
+                return true;
+            }
+
+            Pictures.RemoveAt(value - 1);
+
+            return false;
+        }
+
+        private void SetCurrentPictureIndex1(int value)
+        {
+            currentPictureIndex1 = value;
+            OnPropertyChanged(nameof(CurrentPictureIndex1));
+
+            UpdateShowImg();
+        }
+
+        public FileInfo GetCurrentPictureFileInfo()
+        {
+            return GetPictureFileInfo(CurrentPictureIndex1);
+        }
+
+        public FileInfo GetPictureFileInfo(int indexBase1)
+        {
+            return Pictures?.ElementAtOrDefault(indexBase1 - 1);
+        }
+
+        private async void LoadNextNadPreviousPicture()
+        {
+            await Task.Delay(200);
+
+            await images.UpdateOtherImages();
 
             OnPropertyChanged("NextImg");
             OnPropertyChanged("PreviousImg");
         }
 
-        private void CurrentPictureIndex_ValueChangingEvent(object sender, ValueChangingEventArgs<int> e)
+        public async Task UpdateShowImgPathAsync()
         {
-            e.Apply = ApplyPictureIndex(e.NewValue);
-
-            OnPropertyChanged("Pictures");
-            OnPropertyChanged("CurrentPictureIndex");
-            OnPropertyChanged("AllPictureCountText");
-        }
-
-        private bool ApplyPictureIndex(int newIndex)
-        {
-            if (Pictures.Count == 0 && newIndex == -1) return true;
-
-            int index = newIndex;
-
-            while (Pictures.Count > 0)
+            if (images != null && images.CurrentPath != GetCurrentPictureFileInfo()?.FullName)
             {
-                if (images.TrySetShowImage(Pictures[index].FullName))
-                {
-                    UpdateShowImg();
-
-                    if (index != newIndex) Pictures.CurrentIndexBase0.Value = index;
-
-                    timer.Start();
-                    return true;
-                }
-
-                Pictures.RemoveAt(index);
-
-                if (Pictures.Count <= index) index = Pictures.Count - 1;
-            }
-
-            images.Clear();
-            Pictures.CurrentIndexBase0.Value = -1;
-
-            return false;
-        }
-
-        public void UpdateShowImgPath()
-        {
-            if (images != null && images.ShowPath != Pictures.CurrentItem.FullName)
-            {
-                ApplyPictureIndex(Pictures.CurrentIndexBase0.Value);
+                await SetPossibleCurrentPictureIndexAsync();
             }
         }
 

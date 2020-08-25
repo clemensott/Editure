@@ -156,6 +156,14 @@
       <Project>{0de5f7b2-633a-4acf-b6ad-df37bd9e68d9}</Project>
       <Name>FolderFileLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\StdOttLib\StdOttFrameworkLib\StdOttFrameworkLib.csproj">
+      <Project>{d1334524-78a5-4d16-93bf-27a57c6dbe56}</Project>
+      <Name>StdOttFrameworkLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\StdOttLib\StdOttStandardLib\StdOttStandardLib.csproj">
+      <Project>{a631acbe-454d-4626-a4de-11413c51ad8c}</Project>
+      <Name>StdOttStandardLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Backend\Backend.csproj">
       <Project>{6c15c022-dd60-4d8c-8d38-2f01b227f24c}</Project>
       <Name>Backend</Name>

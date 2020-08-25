@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using Editure.Backend.ViewModels;
 
@@ -16,13 +17,16 @@ namespace Editure.Backend.Doer
         public void Open()
         {
             FileInfo[] files = Utils.SetSubTypeAndRefresh(viewModel.Src, "Refresh Copy Src failed");
-
-            viewModel.Pictures = new CurrentItemList<FileInfo>(files, Utils.DefaultFileInfo);
+            viewModel.Pictures = new ObservableCollection<FileInfo>(files);
         }
 
         public void CopyCurrentPicture()
         {
-            string destPath = Path.Combine(viewModel.Dest.FullName, viewModel.Pictures.CurrentItem.Name);
+            FileInfo currentFile = viewModel.GetCurrentPictureFileInfo();
+
+            if (currentFile == null) return;
+
+            string DestPath = Path.Combine(viewModel.Dest.FullName, currentFile.Name);
 
             try
             {
@@ -36,7 +40,7 @@ namespace Editure.Backend.Doer
 
             try
             {
-                viewModel.Pictures.CurrentItem.CopyTo(destPath);
+                currentFile.CopyTo(DestPath);
             }
             catch (Exception e)
             {
@@ -45,13 +49,15 @@ namespace Editure.Backend.Doer
             }
         }
 
-        public void DeleteCurrentPicture()
+        public async void DeleteCurrentPicture()
         {
             try
             {
-                viewModel.Pictures.CurrentItem.Delete();
-                viewModel.Pictures.RemoveCurrent();
-                viewModel.UpdateShowImgPath();
+                FileInfo currentFile = viewModel.GetCurrentPictureFileInfo();
+
+                currentFile?.Delete();
+                viewModel.Pictures.Remove(currentFile);
+                await viewModel.UpdateShowImgPathAsync();
             }
             catch (Exception e)
             {

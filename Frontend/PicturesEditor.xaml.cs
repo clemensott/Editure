@@ -25,20 +25,20 @@ namespace Editure.Frontend
             viewModel.Editor.Open();
         }
 
-        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        private async void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            viewModel.Pictures.SetPrevious();
+            await viewModel.SetPreviousPictureAsync();
         }
 
-        private void BtnSaveAndNext_Click(object sender, RoutedEventArgs e)
+        private async void BtnSaveAndNext_Click(object sender, RoutedEventArgs e)
         {
             viewModel.Editor.SaveCurrentPicture();
-            viewModel.Pictures.SetNext();
+            await viewModel.SetNextPictureAsync();
         }
 
-        private void BtnNext_Click(object sender, RoutedEventArgs e)
+        private async void BtnNext_Click(object sender, RoutedEventArgs e)
         {
-            viewModel.Pictures.SetNext();
+            await viewModel.SetNextPictureAsync();
         }
 
         private void BtnAllDo_Click(object sender, RoutedEventArgs e)
@@ -89,7 +89,7 @@ namespace Editure.Frontend
             }
         }
 
-        private void imgShow_KeyDown(object sender, KeyEventArgs e)
+        private async void imgShow_KeyDown(object sender, KeyEventArgs e)
         {
             int factor = GetMoveFactor();
 
@@ -97,12 +97,12 @@ namespace Editure.Frontend
             else if (Keyboard.IsKeyDown(Key.A)) viewModel.Editor.Move(new IntPoint(-1 * factor, 0));
             else if (Keyboard.IsKeyDown(Key.W)) viewModel.Editor.Move(new IntPoint(0, 1 * factor));
             else if (Keyboard.IsKeyDown(Key.S)) viewModel.Editor.Move(new IntPoint(0, -1 * factor));
-            else if (e.Key == Key.Q) viewModel.Pictures.SetPrevious();
-            else if (e.Key == Key.E) viewModel.Pictures.SetNext();
+            else if (e.Key == Key.Q) await viewModel.SetPreviousPictureAsync();
+            else if (e.Key == Key.E) await viewModel.SetNextPictureAsync();
             else if (e.Key == Key.Enter)
             {
                 viewModel.Editor.SaveCurrentPicture();
-                viewModel.Pictures.SetNext();
+                await viewModel.SetNextPictureAsync();
             }
         }
 

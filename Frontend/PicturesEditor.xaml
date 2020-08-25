@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Editure.Frontend"
              xmlns:con="clr-namespace:Editure.Frontend.Converters"
+             xmlns:sco="clr-namespace:StdOttFramework.Converters;assembly=StdOttFrameworkLib"
              xmlns:ff="clr-namespace:FolderFile;assembly=FolderFileLib"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="800"
@@ -48,38 +49,45 @@
         <con:IsEncoderConverter x:Key="pngEncCon" DefaultValue="Png" Parent="{StaticResource encConParent}"/>
         <con:IsEncoderConverter x:Key="gifEncCon" DefaultValue="Gif" Parent="{StaticResource encConParent}"/>
         <con:IsEncoderConverter x:Key="tiffEncCon" DefaultValue="Tiff" Parent="{StaticResource encConParent}"/>
+
+        <sco:IntConverter x:Key="indexCon"/>
     </UserControl.Resources>
 
     <Grid Background="Transparent" Margin="5">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" Content="Von:" VerticalAlignment="Center"/>
-        <Label Grid.Column="0" Grid.Row="1" Content="Zu:" VerticalAlignment="Center"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Content="Source:" VerticalAlignment="Center"/>
+        <Label Grid.Column="0" Grid.Row="1" Content="Dest:" VerticalAlignment="Center"/>
         <Label Grid.Column="7" Grid.Row="0" Content="Original:" VerticalAlignment="Center"/>
         <Label Grid.Column="7" Grid.Row="1" Content="Scaled:" VerticalAlignment="Center"/>
         <Label Grid.Column="15" Grid.ColumnSpan="2" Grid.Row="0" Content="Mirror:"
@@ -94,86 +102,73 @@
         <RadioButton Grid.Column="4" Grid.Row="1" Content="Height:" VerticalAlignment="Center" 
                      IsChecked="{Binding ModeType,Mode=TwoWay,Converter={StaticResource modeHeightCon}}"/>
 
-        <Label Grid.Column="12" Grid.Row="0" Content="X:" VerticalAlignment="Center"/>
-        <Label Grid.Column="12" Grid.Row="1" Content="Y:" VerticalAlignment="Center"/>
+            <Label Grid.Column="12" Grid.Row="0" Content="X:" VerticalAlignment="Center"/>
+            <Label Grid.Column="12" Grid.Row="1" Content="Y:" VerticalAlignment="Center"/>
 
-        <CheckBox Grid.Column="15" Grid.Row="1" Content="X" VerticalAlignment="Center" HorizontalAlignment="Center" 
+            <CheckBox Grid.Column="15" Grid.Row="1" Content="X" VerticalAlignment="Center" HorizontalAlignment="Center" 
                   IsChecked="{Binding IsFlipX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <CheckBox Grid.Column="16" Grid.Row="1" Content="Y" VerticalAlignment="Center" HorizontalAlignment="Center"
+            <CheckBox Grid.Column="16" Grid.Row="1" Content="Y" VerticalAlignment="Center" HorizontalAlignment="Center"
                   IsChecked="{Binding IsFlipY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <ff:FolderPicker Grid.Column="1" Grid.Row="0" 
+            <ff:FolderPicker Grid.Column="1" Grid.Row="0" 
                          Folder="{Binding Src, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-        <ff:FolderPicker Grid.Column="1" Grid.Row="1" 
+            <ff:FolderPicker Grid.Column="1" Grid.Row="1" 
                          Folder="{Binding Dest, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBox Grid.Column="5" Grid.Row="0" Margin="3" VerticalAlignment="Center" 
+            <TextBox Grid.Column="5" Grid.Row="0" Margin="3" VerticalAlignment="Center" 
                  Text="{Binding Wanna,Mode=TwoWay,Converter={StaticResource wannaWidthCon},UpdateSourceTrigger=PropertyChanged}" 
                  IsEnabled="{Binding ModeType,Converter={StaticResource enableWidthCon}}" MinWidth="20"/>
-        <TextBox Grid.Column="5" Grid.Row="1" Margin="3" VerticalAlignment="Center" 
+            <TextBox Grid.Column="5" Grid.Row="1" Margin="3" VerticalAlignment="Center" 
                  Text="{Binding Wanna,Mode=TwoWay,Converter={StaticResource wannaHeightCon},UpdateSourceTrigger=PropertyChanged}" 
                  IsEnabled="{Binding ModeType,Converter={StaticResource enableHeightCon}}" MinWidth="20"/>
-        <TextBox Grid.Column="13" Grid.Row="0" Margin="3" VerticalAlignment="Center" MinWidth="20" 
+            <TextBox Grid.Column="13" Grid.Row="0" Margin="3" VerticalAlignment="Center" MinWidth="20" 
                  Text="{Binding Offset,Mode=TwoWay,Converter={StaticResource offsetXCon},UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox Grid.Column="13" Grid.Row="1" Margin="3" VerticalAlignment="Center" MinWidth="20"
+            <TextBox Grid.Column="13" Grid.Row="1" Margin="3" VerticalAlignment="Center" MinWidth="20"
                  Text="{Binding Offset,Mode=TwoWay,Converter={StaticResource offsetYCon},UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBlock Grid.Column="8" Grid.Row="0" VerticalAlignment="Center" 
+            <TextBlock Grid.Column="8" Grid.Row="0" VerticalAlignment="Center" 
                    Text="{Binding OriginalSize,Converter={StaticResource viewSizeCon}}"/>
-        <TextBlock Grid.Column="8" Grid.Row="1" VerticalAlignment="Center" 
+            <TextBlock Grid.Column="8" Grid.Row="1" VerticalAlignment="Center" 
                    Text="{Binding ScaleSize,Converter={StaticResource viewSizeCon}}"/>
 
-        <UniformGrid Grid.Column="10" Grid.RowSpan="2" Columns="3" Rows="3" Width="50" Height="50" Margin="5,7,0,3">
-            <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refTopLeftConverter}}"/>
-            <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refTopCenterConverter}}"/>
-            <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refTopRightConverter}}"/>
-            <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refCenterLeftConverter}}"/>
-            <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refCenterCenterConverter}}"/>
-            <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refCenterRightConverter}}"/>
-            <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refBottomLeftConverter}}"/>
-            <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refBottomCenterConverter}}"/>
-            <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refBottomRightConverter}}"/>
-        </UniformGrid>
-
-        <Grid Grid.ColumnSpan="17" Grid.Row="2"
-              GotFocus="GdImg_GotFocus" LostFocus="GdImg_LostFocus">
-            <Grid Margin="5">
-                <Image Name="imgShow" Focusable="True" 
-                       Source="{Binding ShowImg,Mode=OneWay}" Margin="0"
-                       MouseDown="ImgShow_MouseDown" KeyDown="imgShow_KeyDown"/>
-            </Grid>
+            <UniformGrid Grid.Column="10" Grid.RowSpan="2" Columns="3" Rows="3" Width="50" Height="50" Margin="5,7,0,3">
+                <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refTopLeftConverter}}"/>
+                <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refTopCenterConverter}}"/>
+                <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refTopRightConverter}}"/>
+                <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refCenterLeftConverter}}"/>
+                <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refCenterCenterConverter}}"/>
+                <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refCenterRightConverter}}"/>
+                <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refBottomLeftConverter}}"/>
+                <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refBottomCenterConverter}}"/>
+                <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refBottomRightConverter}}"/>
+            </UniformGrid>
         </Grid>
 
-        <ProgressBar Grid.ColumnSpan="17" Grid.Row="2" Width="300" Height="30" 
-                     Minimum="0" Maximum="1" Value="{Binding Progress,Mode=OneWay}"
-                     Visibility="{Binding IsDoing,Mode=OneWay,Converter={StaticResource proVisCon}}"/>
+        <Grid Grid.Row="1">
+            <Grid Grid.ColumnSpan="17" Grid.Row="2" GotFocus="GdImg_GotFocus" LostFocus="GdImg_LostFocus">
+                <Grid Margin="5">
+                    <Image Name="imgShow" Focusable="True" Margin="0" Source="{Binding ShowImg,Mode=OneWay}"
+                           MouseDown="ImgShow_MouseDown" KeyDown="imgShow_KeyDown"/>
+                </Grid>
+            </Grid>
 
-        <Grid Grid.ColumnSpan="17" Grid.Row="3">
+            <ProgressBar Grid.ColumnSpan="17" Grid.Row="2" Width="300" Height="30" 
+                         Minimum="0" Maximum="1" Value="{Binding Progress,Mode=OneWay}"
+                         Visibility="{Binding IsDoing,Mode=OneWay,Converter={StaticResource proVisCon}}"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="70"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="70"/>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="70"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="70"/>
-                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-
+            <Button Grid.Column="0" Content="Öffnen" Margin="3" Width="70" Click="BtnOpen_Click"/>
+          
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
                 <Label Grid.Column="0" Content="Encoder:" VerticalAlignment="Center" Margin="3"/>
 
                 <RadioButton Grid.Column="1" Content="Auto" VerticalAlignment="Center" Margin="3" 
@@ -188,12 +183,16 @@
                              IsChecked="{Binding EncoderType,Mode=TwoWay,Converter={StaticResource gifEncCon}}"/>
                 <RadioButton Grid.Column="6" Content="Tiff" VerticalAlignment="Center" Margin="3"
                              IsChecked="{Binding EncoderType,Mode=TwoWay,Converter={StaticResource tiffEncCon}}"/>
-            </Grid>
+            </StackPanel>
 
-            <TextBox Grid.Column="3" VerticalAlignment="Center" Margin="3" 
-                     Text="{Binding CurrentPictureIndex,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MinWidth="20"/>
-            <TextBlock Grid.Column="4" VerticalAlignment="Center" Margin="3" 
-                       Text="{Binding AllPictureCountText,Mode=OneWay}" MinWidth="20"/>
+            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                <TextBox VerticalAlignment="Center" Margin="3" MinWidth="20"
+                         Text="{Binding CurrentPictureIndex1,Mode=TwoWay,
+                           UpdateSourceTrigger=PropertyChanged,Converter={StaticResource indexCon}}"/>
+
+                <TextBlock VerticalAlignment="Center" Margin="3,3,0,3" Text="/"/>
+                <TextBlock VerticalAlignment="Center" Margin="0,3,3,3" Text="{Binding Pictures.Count}"/>
+            </StackPanel>
 
             <Button Grid.Column="0" Content="Open" Margin="3" Click="BtnOpen_Click"/>
             <Button Grid.Column="5" Content="Previous" Margin="3" Click="BtnBack_Click"/>
@@ -202,8 +201,12 @@
             <Button Grid.Column="9" Content="{Binding IsDoingButtonText,Mode=OneWay}" 
                     Margin="3" Click="BtnAllDo_Click"/>
 
-            <Button Grid.Column="10" Content="{Binding PauseButtonText,Mode=OneWay}" 
-                    IsEnabled="{Binding IsDoing,Mode=OneWay}" Margin="3" Click="BtnAllPause_Click"/>
+            <StackPanel Grid.Column="5" Orientation="Horizontal">
+                <Button Content="{Binding IsDoingButtonText,Mode=OneWay}" 
+                        Margin="3" Width="70" Click="BtnAllDo_Click"/>
+                <Button Margin="3" Width="70" Content="{Binding PauseButtonText,Mode=OneWay}" 
+                        IsEnabled="{Binding IsDoing,Mode=OneWay}" Click="BtnAllPause_Click"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>

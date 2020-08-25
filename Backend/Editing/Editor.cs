@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
@@ -31,7 +32,7 @@ namespace Editure.Backend.Editing
             }
             else files = Utils.TryCatchWithMsgBox(viewModel.Src.Refresh, "Refresh Edit Src failed");
 
-            viewModel.Pictures = new CurrentItemList<FileInfo>(files, Utils.DefaultFileInfo);
+            viewModel.Pictures = new ObservableCollection<FileInfo>(files);
         }
 
         protected override FileInfo[] Initialize()
@@ -59,8 +60,12 @@ namespace Editure.Backend.Editing
 
         public void SaveCurrentPicture()
         {
-            string destPath = Path.Combine(viewModel.Dest.FullName, viewModel.Pictures.CurrentItem.Name);
-            IEncoderManager encoderManager = viewModel.CurrentPictureEncoder;
+            FileInfo currentFile = viewModel.GetCurrentPictureFileInfo();
+
+            if (currentFile == null) return;
+
+            string DestPath = Path.Combine(viewModel.Dest.FullName, currentFile.Name);
+            IEncoderManager encoderManager = viewModel.GetEncoder(currentFile.Extension);
 
             SavePicture(viewModel.ShowImg, destPath, encoderManager);
         }
