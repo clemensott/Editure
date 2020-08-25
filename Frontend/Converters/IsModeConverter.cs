@@ -8,18 +8,18 @@ namespace Editure.Frontend.Converters
 {
     class IsModeConverterParent
     {
-        public EditMode CurrentValue { get; set; }
+        public EditModeType CurrentValue { get; set; }
     }
 
     class IsModeConverter : DependencyObject, IValueConverter
     {
-        private static EditMode currentValue;
+        private static EditModeType currentValue;
 
         public static readonly DependencyProperty ParentProperty = DependencyProperty.Register("Parent",
             typeof(IsModeConverterParent), typeof(IsModeConverter), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DefaultValueProperty = DependencyProperty.Register("DefaultValue",
-            typeof(EditMode), typeof(IsModeConverter), new PropertyMetadata(EditMode.Crop));
+            typeof(EditModeType), typeof(IsModeConverter), new PropertyMetadata(EditModeType.Crop));
 
         public IsModeConverterParent Parent
         {
@@ -27,18 +27,18 @@ namespace Editure.Frontend.Converters
             set => SetValue(ParentProperty, value);
         }
 
-        public EditMode DefaultValue
+        public EditModeType DefaultValue
         {
-            get => (EditMode)GetValue(DefaultValueProperty);
+            get => (EditModeType)GetValue(DefaultValueProperty);
             set => SetValue(DefaultValueProperty, value);
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (Parent != null) Parent.CurrentValue = (EditMode)value;
-            else currentValue = (EditMode)value;
+            if (Parent != null) Parent.CurrentValue = (EditModeType)value;
+            else currentValue = (EditModeType)value;
 
-            return (EditMode)value == DefaultValue;
+            return (EditModeType)value == DefaultValue;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

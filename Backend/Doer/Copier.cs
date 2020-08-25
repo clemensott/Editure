@@ -23,24 +23,15 @@ namespace Editure.Backend.Doer
         public void CopyCurrentPicture()
         {
             FileInfo currentFile = viewModel.GetCurrentPictureFileInfo();
+            FolderFile.Folder destFolder = viewModel.Dest;
 
-            if (currentFile == null) return;
+            if (currentFile == null || string.IsNullOrWhiteSpace(destFolder?.FullName)) return;
 
-            string DestPath = Path.Combine(viewModel.Dest.FullName, currentFile.Name);
-
-            try
-            {
-                if (File.Exists(destPath)) File.Delete(destPath);
-            }
-            catch (Exception e)
-            {
-                System.Diagnostics.Debug.WriteLine("Copier.CopyCurrentPicture1");
-                System.Diagnostics.Debug.WriteLine(e.ToString());
-            }
+            string destPath = Path.Combine(destFolder.FullName, currentFile.Name);
 
             try
             {
-                currentFile.CopyTo(DestPath);
+                currentFile.CopyTo(destPath, true);
             }
             catch (Exception e)
             {

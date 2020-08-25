@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+using Editure.Backend.Editing.EditMode;
 using Editure.Backend.Editing.ReferencePosition;
 
 namespace Editure.Backend.Editing.PictureEditing
@@ -29,13 +30,13 @@ namespace Editure.Backend.Editing.PictureEditing
             SetImage();
         }
 
-        public EditImage(string path, IntSize wanna, EditMode modeType, bool flipX, bool flipY,
+        public EditImage(string path, IntSize wanna, EditModeType modeType, bool flipX, bool flipY,
             IntPoint offset, EditReferencePositionType referencePositionType) : 
             this(File.ReadAllBytes(path), wanna, modeType, flipX, flipY, offset, referencePositionType)
         {
         }
 
-        public EditImage(byte[] pictureBytes, IntSize wanna, EditMode modeType, bool flipX, bool flipY,
+        public EditImage(byte[] pictureBytes, IntSize wanna, EditModeType modeType, bool flipX, bool flipY,
             IntPoint offset, EditReferencePositionType referencePositionType)
         {
             picBytes = pictureBytes;
@@ -61,7 +62,7 @@ namespace Editure.Backend.Editing.PictureEditing
             return LoadBitmap(bytes, IntSize.Empty);
         }
 
-        private static BitmapImage LoadBitmap(byte[] data, IntSize IntSize)
+        private static BitmapImage LoadBitmap(byte[] data, IntSize intSize)
         {
             MemoryStream mem = new MemoryStream(data);
             BitmapImage loadImg = new BitmapImage();

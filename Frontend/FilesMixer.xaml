@@ -19,7 +19,9 @@
 
         <Label Content="Path:"/>
 
-        <ff:FolderPicker Grid.Row="1" Folder="{Binding Folder, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <ff:FolderPicker Grid.Row="1" AutoRefreshSelection="ForceFalse"
+                         IsRefreshButtonVisible="False" OpenType="Content" SubTypeSelection="Hidden"
+                         Folder="{Binding Folder, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>

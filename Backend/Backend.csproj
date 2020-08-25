@@ -59,6 +59,7 @@
     <Compile Include="Doer\Copier.cs" />
     <Compile Include="Doer\Mixer.cs" />
     <Compile Include="Doer\Searcher.cs" />
+    <Compile Include="Editing\EditMode\EditModeType.cs" />
     <Compile Include="Editing\Editor.cs" />
     <Compile Include="Editing\EditEncoders\EncoderManagerGif.cs" />
     <Compile Include="Editing\EditEncoders\EncoderManagerTiff.cs" />

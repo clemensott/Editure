@@ -16,7 +16,7 @@ namespace Editure.Backend.Editing.PictureEditing
 
         public IntSize Wanna { get; set; }
         
-        public EditMode.EditMode ModeType { get; set; }
+        public EditMode.EditModeType ModeType { get; set; }
 
         public IEditMode Mode => GetMode();
 
@@ -25,7 +25,7 @@ namespace Editure.Backend.Editing.PictureEditing
         public IReferencePosition ReferencePosition => GetReferencePosition();
 
         public EditPictureProperties(bool flipX, bool flipY, IntSize wanna,
-            IntPoint relativeOffset, EditMode.EditMode modeType, EditReferencePositionType referencePositionType)
+            IntPoint relativeOffset, EditMode.EditModeType modeType, EditReferencePositionType referencePositionType)
         {
             FlipX = flipX;
             FlipY = flipY;
@@ -88,16 +88,16 @@ namespace Editure.Backend.Editing.PictureEditing
         {
             switch (ModeType)
             {
-                case EditMode.EditMode.Crop:
+                case EditMode.EditModeType.Crop:
                     return new EditModeCrop();
 
-                case EditMode.EditMode.Ratio:
+                case EditMode.EditModeType.Ratio:
                     return new EditModeRatio();
 
-                case EditMode.EditMode.ScaleWidth:
+                case EditMode.EditModeType.ScaleWidth:
                     return new EditModeWidth();
 
-                case EditMode.EditMode.ScaleHeight:
+                case EditMode.EditModeType.ScaleHeight:
                     return new EditModeHeight();
             }
 
@@ -114,7 +114,7 @@ namespace Editure.Backend.Editing.PictureEditing
 
         private Int32Rect GetImprovedCrop(Int32Rect crop,IntSize scale)
         {
-            if (ModeType == EditMode.EditMode.ScaleHeight || ModeType == EditMode.EditMode.ScaleWidth) return crop;
+            if (ModeType == EditMode.EditModeType.ScaleHeight || ModeType == EditMode.EditModeType.ScaleWidth) return crop;
 
             if (crop.X + crop.Width > scale.Width) crop.X = scale.Width - crop.Width;
             else if (crop.X < 0) crop.X = 0;

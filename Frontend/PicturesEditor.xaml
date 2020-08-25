@@ -80,56 +80,59 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" Content="Source:" VerticalAlignment="Center"/>
-        <Label Grid.Column="0" Grid.Row="1" Content="Dest:" VerticalAlignment="Center"/>
-        <Label Grid.Column="7" Grid.Row="0" Content="Original:" VerticalAlignment="Center"/>
-        <Label Grid.Column="7" Grid.Row="1" Content="Scaled:" VerticalAlignment="Center"/>
-        <Label Grid.Column="15" Grid.ColumnSpan="2" Grid.Row="0" Content="Mirror:"
-               VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Source:" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Destination:"
+                       VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <TextBlock Grid.Column="7" Grid.Row="0" Text="Original:" VerticalAlignment="Center" Margin="0,0,3,0"/>
+            <TextBlock Grid.Column="7" Grid.Row="1" Text="Scaled:" VerticalAlignment="Center" Margin="0,0,3,0"/>
+            <TextBlock Grid.Column="15" Grid.ColumnSpan="2" Grid.Row="0" Text="Mirror:"
+                       VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
 
-        <RadioButton Grid.Column="2" Grid.Row="0" Content="Crop" VerticalAlignment="Center" Margin="3"
-                     IsChecked="{Binding ModeType,Mode=TwoWay,Converter={StaticResource modeCropCon}}"/>
-        <RadioButton Grid.Column="2" Grid.Row="1" Content="Aspect ration" VerticalAlignment="Center" Margin="3"
-                     IsChecked="{Binding ModeType,Mode=TwoWay,Converter={StaticResource modeRatioCon}}"/>
-        <RadioButton Grid.Column="4" Grid.Row="0" Content="Width:" VerticalAlignment="Center" 
-                     IsChecked="{Binding ModeType,Mode=TwoWay,Converter={StaticResource modeWidthCon}}"/>
-        <RadioButton Grid.Column="4" Grid.Row="1" Content="Height:" VerticalAlignment="Center" 
-                     IsChecked="{Binding ModeType,Mode=TwoWay,Converter={StaticResource modeHeightCon}}"/>
+            <RadioButton Grid.Column="2" Grid.Row="0" Content="Crop" VerticalAlignment="Center" Margin="3"
+                         IsChecked="{Binding ModeType,Mode=TwoWay,Converter={StaticResource modeCropCon}}"/>
+            <RadioButton Grid.Column="2" Grid.Row="1" Content="Aspect ration" VerticalAlignment="Center" Margin="3"
+                         IsChecked="{Binding ModeType,Mode=TwoWay,Converter={StaticResource modeRatioCon}}"/>
+            <RadioButton Grid.Column="4" Grid.Row="0" Content="Width:" VerticalAlignment="Center" 
+                         IsChecked="{Binding ModeType,Mode=TwoWay,Converter={StaticResource modeWidthCon}}"/>
+            <RadioButton Grid.Column="4" Grid.Row="1" Content="Height:" VerticalAlignment="Center" 
+                         IsChecked="{Binding ModeType,Mode=TwoWay,Converter={StaticResource modeHeightCon}}"/>
 
             <Label Grid.Column="12" Grid.Row="0" Content="X:" VerticalAlignment="Center"/>
             <Label Grid.Column="12" Grid.Row="1" Content="Y:" VerticalAlignment="Center"/>
 
             <CheckBox Grid.Column="15" Grid.Row="1" Content="X" VerticalAlignment="Center" HorizontalAlignment="Center" 
-                  IsChecked="{Binding IsFlipX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                      Margin="2,0" IsChecked="{Binding IsFlipX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <CheckBox Grid.Column="16" Grid.Row="1" Content="Y" VerticalAlignment="Center" HorizontalAlignment="Center"
-                  IsChecked="{Binding IsFlipY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                      Margin="2,0" IsChecked="{Binding IsFlipY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <ff:FolderPicker Grid.Column="1" Grid.Row="0" 
-                         Folder="{Binding Src, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-            <ff:FolderPicker Grid.Column="1" Grid.Row="1" 
-                         Folder="{Binding Dest, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <ff:FolderPicker Grid.Column="1" Grid.Row="0" AutoRefreshSelection="ForceFalse"
+                             IsRefreshButtonVisible="False" OpenType="Content" VerticalAlignment="Center"
+                             Folder="{Binding Src, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <ff:FolderPicker Grid.Column="1" Grid.Row="1" AutoRefreshSelection="ForceFalse" SubTypeSelection="Hidden"
+                             IsRefreshButtonVisible="False" OpenType="Content" VerticalAlignment="Center"
+                             Folder="{Binding Dest, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
             <TextBox Grid.Column="5" Grid.Row="0" Margin="3" VerticalAlignment="Center" 
-                 Text="{Binding Wanna,Mode=TwoWay,Converter={StaticResource wannaWidthCon},UpdateSourceTrigger=PropertyChanged}" 
-                 IsEnabled="{Binding ModeType,Converter={StaticResource enableWidthCon}}" MinWidth="20"/>
+                     Text="{Binding Wanna,Mode=TwoWay,Converter={StaticResource wannaWidthCon},UpdateSourceTrigger=PropertyChanged}" 
+                     IsEnabled="{Binding ModeType,Converter={StaticResource enableWidthCon}}" MinWidth="20"/>
             <TextBox Grid.Column="5" Grid.Row="1" Margin="3" VerticalAlignment="Center" 
-                 Text="{Binding Wanna,Mode=TwoWay,Converter={StaticResource wannaHeightCon},UpdateSourceTrigger=PropertyChanged}" 
-                 IsEnabled="{Binding ModeType,Converter={StaticResource enableHeightCon}}" MinWidth="20"/>
+                     Text="{Binding Wanna,Mode=TwoWay,Converter={StaticResource wannaHeightCon},UpdateSourceTrigger=PropertyChanged}" 
+                     IsEnabled="{Binding ModeType,Converter={StaticResource enableHeightCon}}" MinWidth="20"/>
             <TextBox Grid.Column="13" Grid.Row="0" Margin="3" VerticalAlignment="Center" MinWidth="20" 
-                 Text="{Binding Offset,Mode=TwoWay,Converter={StaticResource offsetXCon},UpdateSourceTrigger=PropertyChanged}"/>
+                     Text="{Binding Offset,Mode=TwoWay,Converter={StaticResource offsetXCon},UpdateSourceTrigger=PropertyChanged}"/>
             <TextBox Grid.Column="13" Grid.Row="1" Margin="3" VerticalAlignment="Center" MinWidth="20"
-                 Text="{Binding Offset,Mode=TwoWay,Converter={StaticResource offsetYCon},UpdateSourceTrigger=PropertyChanged}"/>
+                     Text="{Binding Offset,Mode=TwoWay,Converter={StaticResource offsetYCon},UpdateSourceTrigger=PropertyChanged}"/>
 
             <TextBlock Grid.Column="8" Grid.Row="0" VerticalAlignment="Center" 
-                   Text="{Binding OriginalSize,Converter={StaticResource viewSizeCon}}"/>
+                       Text="{Binding OriginalSize,Converter={StaticResource viewSizeCon}}"/>
             <TextBlock Grid.Column="8" Grid.Row="1" VerticalAlignment="Center" 
-                   Text="{Binding ScaleSize,Converter={StaticResource viewSizeCon}}"/>
+                       Text="{Binding ScaleSize,Converter={StaticResource viewSizeCon}}"/>
 
             <UniformGrid Grid.Column="10" Grid.RowSpan="2" Columns="3" Rows="3" Width="50" Height="50" Margin="5,7,0,3">
                 <RadioButton IsChecked="{Binding ReferencePosition,Mode=TwoWay,Converter={StaticResource refTopLeftConverter}}"/>
@@ -164,10 +167,14 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Content="Öffnen" Margin="3" Width="70" Click="BtnOpen_Click"/>
-          
+            <Button Grid.Column="0" Content="Open" Margin="3" Width="70" Click="BtnOpen_Click"/>
+
             <StackPanel Grid.Column="1" Orientation="Horizontal">
                 <Label Grid.Column="0" Content="Encoder:" VerticalAlignment="Center" Margin="3"/>
 
@@ -185,7 +192,7 @@
                              IsChecked="{Binding EncoderType,Mode=TwoWay,Converter={StaticResource tiffEncCon}}"/>
             </StackPanel>
 
-            <StackPanel Grid.Column="2" Orientation="Horizontal">
+            <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="5,0">
                 <TextBox VerticalAlignment="Center" Margin="3" MinWidth="20"
                          Text="{Binding CurrentPictureIndex1,Mode=TwoWay,
                            UpdateSourceTrigger=PropertyChanged,Converter={StaticResource indexCon}}"/>
@@ -194,14 +201,11 @@
                 <TextBlock VerticalAlignment="Center" Margin="0,3,3,3" Text="{Binding Pictures.Count}"/>
             </StackPanel>
 
-            <Button Grid.Column="0" Content="Open" Margin="3" Click="BtnOpen_Click"/>
-            <Button Grid.Column="5" Content="Previous" Margin="3" Click="BtnBack_Click"/>
-            <Button Grid.Column="6" Content="Save and Next" Margin="3" Click="BtnSaveAndNext_Click"/>
-            <Button Grid.Column="7" Content="Next" Margin="3" Click="BtnNext_Click"/>
-            <Button Grid.Column="9" Content="{Binding IsDoingButtonText,Mode=OneWay}" 
-                    Margin="3" Click="BtnAllDo_Click"/>
+            <Button Grid.Column="5" Content="Previous" Margin="3" Width="70" Click="BtnBack_Click"/>
+            <Button Grid.Column="6" Content="Save and Next" Margin="3" Width="110" Click="BtnSaveAndNext_Click"/>
+            <Button Grid.Column="7" Content="Next" Margin="3" Width="70" Click="BtnNext_Click"/>
 
-            <StackPanel Grid.Column="5" Orientation="Horizontal">
+            <StackPanel Grid.Column="8" Orientation="Horizontal">
                 <Button Content="{Binding IsDoingButtonText,Mode=OneWay}" 
                         Margin="3" Width="70" Click="BtnAllDo_Click"/>
                 <Button Margin="3" Width="70" Content="{Binding PauseButtonText,Mode=OneWay}" 

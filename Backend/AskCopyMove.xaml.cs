@@ -32,13 +32,6 @@ namespace Editure.Backend
             InitializeComponent();
 
             errors = new Queue<CopyMoveErrorEventArgs>();
-            Application.Current.Exit += Application_Exit;
-        }
-
-        private void Application_Exit(object sender, ExitEventArgs e)
-        {
-            CopyMoveFiles.Current.Stop();
-            Close();
         }
 
         public static void Start()

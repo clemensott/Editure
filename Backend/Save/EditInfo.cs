@@ -19,7 +19,7 @@ namespace Editure.Backend.Save
         
         public IntPoint Offset { get; set; }
         
-        public EditMode Mode { get; set; }
+        public EditModeType Mode { get; set; }
         public EditReferencePositionType ReferencePositionType { get; set; }
         
         public EditEncoderType EditEncoder { get; set; }
@@ -35,7 +35,7 @@ namespace Editure.Backend.Save
             Wanna = new IntSize();
             Offset = new IntPoint();
 
-            Mode = EditMode.Crop;
+            Mode = EditModeType.Crop;
             ReferencePositionType = EditReferencePositionType.CenterCenter;
             EditEncoder = EditEncoderType.Auto;
         }

@@ -13,7 +13,7 @@ namespace Editure.Frontend.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (EditMode)value != EditMode.ScaleWidth;
+            return (EditModeType)value != EditModeType.ScaleWidth;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

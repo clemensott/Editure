@@ -9,8 +9,7 @@ using Editure.Backend.Editing.EditEncoders;
 using Editure.Backend.Editing.EditMode;
 using Editure.Backend.Editing.PictureEditing;
 using Editure.Backend.Editing.ReferencePosition;
-using Editure.Backend.TextToVal;
-using FolderFile;
+using StdOttStandard;
 
 namespace Editure.Backend.ViewModels
 {
@@ -84,7 +83,7 @@ namespace Editure.Backend.ViewModels
 
         public IntSize Wanna
         {
-            get => return Properties.Wanna;
+            get => Properties.Wanna;
             set
             {
                 if (value == Wanna) return;
@@ -99,7 +98,7 @@ namespace Editure.Backend.ViewModels
 
         public IntPoint Offset
         {
-            get => return Properties.GetRelativeOffset(OriginalSize);
+            get => Properties.GetRelativeOffset(OriginalSize);
             set
             {
                 if (Offset == value) return;
@@ -152,9 +151,9 @@ namespace Editure.Backend.ViewModels
             }
         }
 
-        public EditMode ModeType
+        public EditModeType ModeType
         {
-            get => return Properties.ModeType;
+            get => Properties.ModeType;
             set
             {
                 if (value == ModeType) return;
@@ -169,7 +168,7 @@ namespace Editure.Backend.ViewModels
 
         public EditReferencePositionType ReferencePosition
         {
-            get => return Properties.ReferencePositionType;
+            get => Properties.ReferencePositionType;
             set
             {
                 if (value == ReferencePosition) return;
@@ -196,7 +195,7 @@ namespace Editure.Backend.ViewModels
 
         public ObservableCollection<FileInfo> Pictures
         {
-            get => return pictures;
+            get => pictures;
             set
             {
                 if (value == pictures) return;
@@ -231,7 +230,7 @@ namespace Editure.Backend.ViewModels
             Offset = new IntPoint(0, 0);
 
             EncoderType = EditEncoderType.Auto;
-            ModeType = EditMode.Crop;
+            ModeType = EditModeType.Crop;
             ReferencePosition = EditReferencePositionType.CenterCenter;
 
             Src = null;
@@ -244,7 +243,7 @@ namespace Editure.Backend.ViewModels
 
         private void SetLatestCurrentIndex(int index)
         {
-            latestCurrentIndex = StdOttStandard.Utils.CycleIndex(index, Pictures.Count, 1);
+            latestCurrentIndex = StdUtils.CycleIndex(index, Pictures.Count, 1);
         }
 
         public async Task SetPreviousPictureAsync()

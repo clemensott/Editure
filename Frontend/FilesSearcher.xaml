@@ -24,8 +24,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" Content="Source:" Margin="3" VerticalAlignment="Center"/>
-        <Label Grid.Column="1" Grid.Row="0" Content="Destination:" Margin="3" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="Source:" Margin="5,3" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="1" Grid.Row="0" Text="Reference:" Margin="5,3" VerticalAlignment="Center"/>
 
         <ff:FolderPicker Grid.Column="0" Grid.Row="1" Margin="0,0,0,20" SingleLine="False"
                          AutoRefreshSelection="ForceFalse" IsRefreshButtonVisible="False" OpenType="Content"

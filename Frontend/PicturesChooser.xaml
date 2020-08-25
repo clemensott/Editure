@@ -36,6 +36,7 @@
         <Label Grid.Column="0" Grid.Row="0" Content="Source:" VerticalAlignment="Center"/>
 
         <ff:FolderPicker Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="0,0,0,20"
+                         AutoRefreshSelection="ForceFalse" IsRefreshButtonVisible="False" OpenType="Content"
                          Folder="{Binding Src, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         
         <local:DestFolderControl Grid.Column="0" Grid.Row="2" Margin="3,0,3,20" DataContext="{Binding Have}"/>

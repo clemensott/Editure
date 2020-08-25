@@ -73,7 +73,7 @@ namespace Editure.Backend.Doer
 
         private static FileInfo GetDemixedFileInfo(FileInfo file)
         {
-            if (IsMixed(file.Name)) return file;
+            if (!IsMixed(file.Name)) return file;
 
             try
             {

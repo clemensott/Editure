@@ -6,10 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Threading;
 using Editure.Backend.Doer;
-using Editure.Backend.TextToVal;
-using FolderFile;
+using StdOttStandard;
 
 namespace Editure.Backend.ViewModels
 {
@@ -22,7 +20,6 @@ namespace Editure.Backend.ViewModels
         private int latestCurrentIndex, setCurrentIndexOffset, currentPictureIndex1;
         private ObservableCollection<FileInfo> pictures;
         private PreloadImage images;
-        private readonly DispatcherTimer timer;
 
         public bool IsLoadingCurrentImage
         {
@@ -62,20 +59,15 @@ namespace Editure.Backend.ViewModels
 
         public int CurrentPictureIndex1
         {
-            get => Pictures.CurrentIndexBase1;
-            set
-            {
-                if (value == CurrentPictureIndex) return;
-
-                Pictures.CurrentIndexBase1.String = value;
-            }
+            get => currentPictureIndex1;
+            set => SetPossibleCurrentPictureIndexAsync(value, 0);
         }
 
-        public ImageSource PreviousImg => images?.Previous ?? new BitmapImage();
+        public ImageSource PreviousImg => images?.Previous;
 
-        public ImageSource ShowImg => images?.Show ?? new BitmapImage();
+        public ImageSource ShowImg => images?.Current;
 
-        public ImageSource NextImg => images?.Next ?? new BitmapImage();
+        public ImageSource NextImg => images?.Next;
 
         public ObservableCollection<FileInfo> Pictures
         {
@@ -96,7 +88,7 @@ namespace Editure.Backend.ViewModels
 
         public string Title => title;
 
-        public string CompleteTitle => (images?.Show == null ? string.Empty : (images.ShowPath + " - ")) + Title;
+        public string CompleteTitle => (images?.Current == null ? string.Empty : (images.CurrentPath + " - ")) + Title;
 
         public ViewModelCopy()
         {
@@ -110,7 +102,7 @@ namespace Editure.Backend.ViewModels
 
         private void SetLatestCurrentIndex(int index)
         {
-            latestCurrentIndex = StdOttStandard.Utils.CycleIndex(index, Pictures.Count, 1);
+            latestCurrentIndex = StdUtils.CycleIndex(index, Pictures.Count, 1);
         }
 
         public async Task SetPreviousPictureAsync()

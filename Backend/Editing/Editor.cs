@@ -64,7 +64,7 @@ namespace Editure.Backend.Editing
 
             if (currentFile == null) return;
 
-            string DestPath = Path.Combine(viewModel.Dest.FullName, currentFile.Name);
+            string destPath = Path.Combine(viewModel.Dest.FullName, currentFile.Name);
             IEncoderManager encoderManager = viewModel.GetEncoder(currentFile.Extension);
 
             SavePicture(viewModel.ShowImg, destPath, encoderManager);

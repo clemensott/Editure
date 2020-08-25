@@ -1,7 +1,5 @@
 ﻿namespace Editure.Backend.Editing.EditMode
 {
-    public enum EditMode { Ratio, Crop, ScaleWidth, ScaleHeight };
-
     public interface IEditMode
     {
         bool IsCrop { get; }

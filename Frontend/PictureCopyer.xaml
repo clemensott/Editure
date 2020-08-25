@@ -5,15 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Editure.Frontend"
              xmlns:con="clr-namespace:StdOttFramework.Converters;assembly=StdOttFrameworkLib"
-             xmlns:spi="clr-namespace:StdOttFramework.Converters.Specialized;assembly=StdOttFrameworkLib"
              xmlns:ff="clr-namespace:FolderFile;assembly=FolderFileLib"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="600"
+             d:DesignHeight="200" d:DesignWidth="800"
              DataContextChanged="Control_DataContextChanged">
 
     <UserControl.Resources>
         <con:IntConverter x:Key="indexCon"/>
-        <spi:VisibleCollapsedConverter x:Key="visCon"/>
+        <con:VisibleCollapsedConverter x:Key="visCon"/>
     </UserControl.Resources>
 
     <Grid>
@@ -33,13 +32,15 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="Src:"/>
-        <Label Grid.Row="1" Content="Dest:"/>
+        <Label Grid.Row="0" Content="Source:"/>
+        <Label Grid.Row="1" Content="Destination:"/>
 
-        <ff:FolderPicker Grid.Column="1" Grid.Row="0"
-                            Folder="{Binding Src, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-        <ff:FolderPicker Grid.Column="1" Grid.Row="1"
-                            Folder="{Binding Dest, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <ff:FolderPicker Grid.Column="1" Grid.Row="0" AutoRefreshSelection="ForceFalse"
+                         IsRefreshButtonVisible="False" OpenType="Content"
+                         Folder="{Binding Src, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <ff:FolderPicker Grid.Column="1" Grid.Row="1" AutoRefreshSelection="ForceFalse"
+                         IsRefreshButtonVisible="False" OpenType="Content" SubTypeSelection="Hidden"
+                         Folder="{Binding Dest, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
         <StackPanel Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Center">
             <TextBox Margin="3" VerticalAlignment="Center" MinWidth="30"
@@ -51,12 +52,12 @@
         </StackPanel>
 
         <Button Grid.Column="3" Grid.Row="1" Width="100"
-                Content="Bilder öffnen" Margin="3" Click="BtnOpen_Click"/>
+                Content="Open Pictures" Margin="3" Click="BtnOpen_Click"/>
         <Button Grid.Column="4" Grid.ColumnSpan="3" Margin="3" 
-                Content="Kopieren und Weiter (S)" Click="BtnNextAndSave_Click"/>
-        <Button Grid.Column="4" Grid.Row="1" Content="Zurück (A)" Margin="3" Width="70" Click="BtnBack_Click"/>
-        <Button Grid.Column="5" Grid.Row="1" Content="Löschen (W)" Margin="3" Width="70" Click="BtnDelete_Click"/>
-        <Button Grid.Column="6" Grid.Row="1" Content="Weiter (D)" Margin="3" Width="70" Click="BtnNext_Click"/>
+                Content="Copy and Next (S)" Click="BtnNextAndSave_Click"/>
+        <Button Grid.Column="4" Grid.Row="1" Content="Previous (A)" Margin="3" Width="70" Click="BtnBack_Click"/>
+        <Button Grid.Column="5" Grid.Row="1" Content="Delete (W)" Margin="3" Width="70" Click="BtnDelete_Click"/>
+        <Button Grid.Column="6" Grid.Row="1" Content="Next (D)" Margin="3" Width="70" Click="BtnNext_Click"/>
 
         <Grid Grid.ColumnSpan="7" Grid.Row="2" Focusable="True"
               GotFocus="GdImg_GotFocus" LostFocus="GdImg_LostFocus">

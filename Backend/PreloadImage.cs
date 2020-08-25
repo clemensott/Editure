@@ -12,17 +12,17 @@ namespace Editure.Backend
         private IList<FileInfo> pictures;
         private Tuple<string, BitmapImage> currentTuple, previousTuple, nextTuple;
 
-        public BitmapImage Show => currentTuple.Item2;
+        public BitmapImage Current => currentTuple?.Item2;
 
-        public string ShowPath => currentTuple.Item1;
+        public string CurrentPath => currentTuple?.Item1;
 
-        public BitmapImage Previous => previousTuple.Item2;
+        public BitmapImage Previous => previousTuple?.Item2;
 
-        public string PreviousPath => previousTuple.Item1;
+        public string PreviousPath => previousTuple?.Item1;
 
-        public BitmapImage Next => nextTuple.Item2;
+        public BitmapImage Next => nextTuple?.Item2;
 
-        public string NextPath => nextTuple.Item1;
+        public string NextPath => nextTuple?.Item1;
 
         public PreloadImage(IList<FileInfo> pictures)
         {
@@ -33,9 +33,9 @@ namespace Editure.Backend
 
         public async Task<BitmapImage> TryGetImageAsync(string path)
         {
-            if (path == CurrentPath) return CurrentImg;
-            if (path == PreviousPath) return PreviousImg;
-            if (path == NextPath) return NextImg;
+            if (path == CurrentPath) return Current;
+            if (path == PreviousPath) return Previous;
+            if (path == NextPath) return Next;
 
             try
             {
