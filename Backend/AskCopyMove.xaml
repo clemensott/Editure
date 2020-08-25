@@ -1,0 +1,61 @@
+﻿<Window x:Class="Editure.Backend.AskCopyMove"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Copy or move file problem"
+        ResizeMode="CanResize"
+        Height="250" Width="500" MinHeight="250" MinWidth="500">
+    <Grid Margin="3">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Margin="6">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Source file:" FontWeight="Bold"/>
+                <TextBlock Name="tblSrcSize" Text="Size:" Margin="3,0,0,0" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="1" Name="tblSrcPath" Text="Source path:"
+                       TextWrapping="WrapWithOverflow" Margin="0,2,0,0" />
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="6">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Destination file:" FontWeight="Bold" />
+                <TextBlock Name="tblDestSize" Text="Size:" Margin="3,0,0,0" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="1" Name="tblDestPath" Text="Destination path:"
+                       TextWrapping="WrapWithOverflow" Margin="0,2,0,0" />
+        </Grid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="3">
+            <CheckBox Name="cbxDoForAll" Content="Apply for all" Margin="5" />
+            <TextBlock Name="tblFilesCount" Text="(0)" VerticalAlignment="Center" />
+        </StackPanel>
+
+        <StackPanel Grid.ColumnSpan="2" Grid.Row="5" Orientation="Horizontal" Margin="3">
+            <Button Content="Replace" Margin="2" Width="100" Click="BtnReplace_Click" />
+            <Button Content="Skip" Margin="2" Width="100" Click="BtnSkip_Click" />
+            <Button Content="Keep both" Margin="2" Width="100" Click="BtnKeepBoth_Click" />
+        </StackPanel>
+    </Grid>
+</Window>
